@@ -1,7 +1,8 @@
 {
-  "name": "epo346",
+  "name": "arantzazepeda",
   "version": "0.0.0",
   "scripts": {
+    "ng:serve": "./node_modules/.bin/ng serve",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -58,7 +59,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.3.5",
-    "@angular/cli": "~13.3.5",
+    "@angular/cli": "^13.3.11",
     "@angular/compiler-cli": "~13.3.8",
     "@types/datatables.net": "^1.10.21",
     "@types/jasmine": "~3.8.0",

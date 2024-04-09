@@ -11,6 +11,7 @@ class Server{
         this.paths= {
             auth: '/api/auth',
             blogs: '/api/blogs',
+            categories: '/api/categories',
             emails: '/api/emails',
             password: '/api/password',
             search: '/api/search',
@@ -46,6 +47,7 @@ class Server{
     routes(){
         this.app.use(this.paths.auth, require('../routes/auth.route'));
         this.app.use(this.paths.blogs, require('../routes/blogs.route'));
+        this.app.use(this.paths.categories, require('../routes/categories.route'));
         this.app.use(this.paths.emails, require('../routes/emails.route'));
         this.app.use(this.paths.password, require('../routes/password.route'));
         this.app.use(this.paths.search, require('../routes/search.route'));

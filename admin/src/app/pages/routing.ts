@@ -11,8 +11,12 @@ const Routing: Routes = [
     loadChildren: () => import('../pages/admin/users/users.module').then(m => m.UsersModule)
   },
   {
-    path: 'news',
+    path: 'blogs',
     loadChildren: () => import('../pages/admin/news/news.module').then(m => m.NewsModule)
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('../pages/admin/categories/categories.module').then(m => m.CategoriesModule)
   },
   {
     path: '',

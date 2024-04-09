@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/admin",
+            "outputPath": "dist/arantzazepeda",
             "allowedCommonJsDependencies": [
               "object-path",
               "apexcharts",

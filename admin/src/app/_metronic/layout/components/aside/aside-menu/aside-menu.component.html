@@ -13,6 +13,8 @@
   ></a>
 </div>
 
+<!-- Separator -->
+
 <div class="menu-item">
   <div class="menu-content pt-8 pb-2">
     <span class="menu-section text-muted text-uppercase fs-8 ls-1"
@@ -33,15 +35,39 @@
     ></a>
 </div>
 
-<!-- News -->
-<div class="menu-item">
+<!-- Categories -->
+<div class="menu-item" >
   <a class="menu-link without-sub"
-     routerLink="/news"
+     routerLink="/categories"
      routerLinkActive="active">
     <span class="menu-icon">
-      <span [inlineSVG]="'./assets/media/icons/duotune/files/fil023.svg'" class="svg-icon svg-icon-2"></span>
+      <span [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'" class="svg-icon svg-icon-2"></span>
     </span>
-    <span class="menu-title">Comunicados</span
+    <span class="menu-title" translate="MENU.CATEGORIES"></span
+    ></a>
+</div>
+
+<!-- Tags -->
+<div class="menu-item">
+  <a class="menu-link without-sub"
+     routerLink="/tags"
+     routerLinkActive="active">
+    <span class="menu-icon">
+      <span [inlineSVG]="'./assets/media/icons/duotune/general/gen056.svg'" class="svg-icon svg-icon-2"></span>
+    </span>
+    <span class="menu-title" translate="MENU.TAGS"></span
+    ></a>
+</div>
+
+<!-- Blogs -->
+<div class="menu-item">
+  <a class="menu-link without-sub"
+     routerLink="/blogs"
+     routerLinkActive="active">
+    <span class="menu-icon">
+      <span [inlineSVG]="'./assets/media/icons/duotune/communication/com007.svg'" class="svg-icon svg-icon-2"></span>
+    </span>
+    <span class="menu-title" translate="MENU.BLOGS"></span
     ></a>
 </div>
 

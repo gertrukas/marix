@@ -13,9 +13,10 @@ export const locale = {
       FEATURES: '特征',
       APPS: '应用',
       DASHBOARD: '仪表板',
-      COMPANIES: 'Compañias',
+      CATEGORIES: 'Categorias',
       USERS: 'Usuarios',
-      PACKAGES: 'Paquetes',
+      TAGS: 'Etiquetas',
+      BLOGS: 'Blogs',
     },
     AUTH: {
       GENERAL: {
