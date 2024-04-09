@@ -1,0 +1,37 @@
+<app-breadcrumbs [firstItem]="item" [search]="search"></app-breadcrumbs>
+  
+  <div class="-col-3-1">
+  
+    <div class="-blogs"><!-- <div class="-blogs" infiniteScroll [infiniteScrollDistance]="1"  (scrolled)="onScroll()"> -->
+        <div class="p-2">
+            <h1>Comunicados</h1>
+            <div class="-col-n p-1">
+          
+              <div class="-galeria">
+          
+                <div *ngFor="let blog of blogs " class="-tarjeta" >
+          
+                  <div>
+                    <a [routerLink]="['/blog', blog.slug]"><img [src]="blog._id | image: 'news'"  [alt]="blog.name"></a>
+                  <div>
+                    <p class="-titulo">{{ blog.name }}</p>
+                    <div [innerHTML]="blog.intro | truncate: 200" class="-intro" ></div>
+                  </div>
+          
+                  <div class="">
+                    <a [routerLink]="['/blog']" [queryParams]="{ blog: blog | json }" class="-btn-ver-mas float-end"> ver mas</a>
+                  </div>
+          
+                </div>
+          
+              </div>
+          
+            </div>
+          </div>
+        </div>  
+    </div>
+    <div class="-pub-right text-end end">
+      
+    </div>
+  
+  </div>

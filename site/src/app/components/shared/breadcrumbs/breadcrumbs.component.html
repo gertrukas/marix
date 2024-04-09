@@ -1,0 +1,8 @@
+<div class="breadcrumb">
+    <mat-icon matSuffix class="mt-1">home</mat-icon>&nbsp;
+    <a class=" " routerLink="/">
+        <span class="text">Inicio</span>
+    </a>&nbsp;
+    <span class="text" *ngIf="firstItem && search"> / Resultados / {{ firstItem | titlecase }}</span>
+    <span class="text" *ngIf="firstItem && !search"> / {{ firstItem }}</span>
+</div>
