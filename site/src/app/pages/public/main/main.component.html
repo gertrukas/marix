@@ -21,72 +21,46 @@
 
   </section>
 
-  <section class="-card border shadow-lg rounded-lg py-4  px-8 flex flex-col lg:flex-row">
+<section class="pb-3">
 
-    <div class="w-full lg:w-1/2 p-0 -err">
-      <a href="#"><img src="/assets/images/portada.jpg" class="w-full object-contain" alt=""></a>
-    </div>
-
-    <div class="w-full lg:w-1/2 flex justify-start flex-col align-top items-start p-4 pt-0 pb-0 -err">
-      <h2 class="text-2xl font-semibold text-left">
-        Título del blog
-
-      </h2>
-      <p class="text-gray-500 text-left">
-        Eliminar el olor a orina de tu perro puede ser un reto. Para lograrlo se debe abordar adecuadamente, aquí te comparto algunos consejos y te recomiendo los productos a usar.
-      </p>
-
-      <div class=" flex justify-end items-end w-full h-full">
-        <a class="-boton-azul" href="#">leer más</a>
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="-err">
+        <div class="row px-5 mb-3 text-end --titulo">
+          <h1 class="__titulo">Comunicados</h1>
+        </div>
 
 
+        <div class="--card -err"  *ngFor="let blog of blogs ">
+          <div class="row">
 
-    <div class="-blogs"><!-- <div class="-blogs" infiniteScroll [infiniteScrollDistance]="1"  (scrolled)="onScroll()"> -->
+            <div class="col-md-6">
+              <a [routerLink]="['/blog', blog.slug]">
+                <!--<img [src]="blog._id | image: 'news'"  [alt]="blog.name" class="img-fluid">-->
+                <img src="/assets/images/portada.jpg" class="img-fluid" alt="ejemplo">
+              </a>
+            </div>
 
-      <div class="p-2">
-            <h1>Comunicados</h1>
+            <div class="col-md-6 px-3">
+              <div class="card-body">
+                <h1 class="-titulo">{{blog.name}}</h1>
 
+                <p class="card-text"><small class="text-muted">{{ blog.date | date: 'dd MMM yyyy'}}</small></p>
 
-            <div class="">
+                <div [innerHTML]="blog.intro | truncate: 200" class="-intro" ></div>
 
-              <div class="">
+                <div class="text-end">
 
-                <div *ngFor="let blog of blogs " class="" >
-
-                  <div>
-
-                    <a [routerLink]="['/blog', blog.slug]">
-                      <img [src]="blog._id | image: 'news'"  [alt]="blog.name">
-                      <img src="/assets/images/portada.jpg" class="fluid">
-                    </a>
-                    <div>
-                      <div [innerHTML]="blog.intro | truncate: 200" class="-intro" ></div>
-                    </div>
-
-                    <div class="">
-                      <a [routerLink]="['/blog']" [queryParams]="{ blog: blog | json }" class="float-end">ver mas</a>
-                    </div>
-
+                  <a [routerLink]="['/blog']" [queryParams]="{ blog: blog | json }" class="-boton-azul btn btn-primary">ver mas</a>
                 </div>
 
               </div>
-
             </div>
+
           </div>
         </div>
-    </div>
 
-    <!--<div class="-pub-right text-end end">
-      ¿¿¿¿¿
-    </div>-->
+  <div class="-pub-right text-end end">
+     ¿¿¿¿¿
+   </div>
 
-  </section>
+</section>
 
 </main>
