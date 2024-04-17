@@ -11,10 +11,10 @@ export class SearchComponent {
 
   constructor(private router: Router){}
 
-  search(e: any, value: any){    
+  search(e: any, value: any){
     console.log(value);
     if(e.code == 'Enter'){
-      this.router.navigate(['/'], { queryParams: {'item': value} });
+      this.router.navigate(['/resultados'], { queryParams: {'item': value} });
     }
   }
 

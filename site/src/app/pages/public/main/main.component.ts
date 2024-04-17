@@ -15,36 +15,13 @@ export class MainComponent implements OnInit {
   search: boolean  = false;
   private actualPage: number = 1;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private service: SearchService
     ) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
-      const item = params.get('item');
-      if (item) {
-        this.item = item
-        this.search = true
-        this.sheared(1, item);
-      } else {
-        this.item = ''
-        this.search = false
-        this.getData();
-      }
-    });
-  }
-
-  sheared(page: number, item: any) {
-    this.blogs = [];
-    this.service.getBlogs(page, item).subscribe(response => {
-      for(let i=0;response.blogs.length>i;i++){
-        this.blogs.push(response.blogs[i]);
-      }
-    }, error => {
-      console.error(error);
-    });
-
+    this.getData();
   }
 
   getData() {
@@ -56,7 +33,17 @@ export class MainComponent implements OnInit {
     }, error => {
       console.error(error);
     });
+  }
 
+  getPlus() {
+    this.actualPage = this.actualPage + 1;
+    this.service.getBlogs(this.actualPage).subscribe(response => {
+      for(let i=0;response.blogs.length>i;i++){
+        this.blogs.push(response.blogs[i]);
+      }
+    }, error => {
+      console.error(error);
+    });
   }
 
 }

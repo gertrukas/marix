@@ -3,20 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: PublicComponent,
     children: [
-      { 
-        path: '', 
-        loadChildren: () => import('./main/main.module').then(m => m.MainModule) 
+      {
+        path: '',
+        loadChildren: () => import('./main/main.module').then(m => m.MainModule)
       },
-      { 
-        path: 'blog', 
-        loadChildren: () => import('./news/news.module').then(m => m.NewsModule) 
+      {
+        path: 'resultados',
+        loadChildren: () => import('./results/results.module').then(m => m.ResultsModule)
+      },
+      {
+        path: 'blog',
+        loadChildren: () => import('./news/news.module').then(m => m.NewsModule)
       }
     ]
-  },
+  }
 ];
 
 @NgModule({

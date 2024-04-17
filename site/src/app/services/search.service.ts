@@ -31,6 +31,10 @@ export class SearchService {
       items = '?item=' + item
       pages = '&page=' + page;
       return this.http.get<any>(`${this.urlSearch}/${items}${pages}`);
+    } else if(page) {
+      items = '?item= '
+      pages = '&page=' + page;
+      return this.http.get<any>(`${this.urlSearch}/${items}${pages}`);
     } else {
       return this.http.get<any>(`${this.urlSearch}`);
     }

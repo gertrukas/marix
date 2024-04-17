@@ -6,8 +6,8 @@ const { filesUpload: filesUploadHelper } = require("../helpers");
 
 const blogsGetPublic = async (req, res = response) => {
 
-    const { limit = 4, page = 1, item } = req.query;
-    let from = (page - 1) * limit;
+    const { limit = 4, page, item } = req.query;
+    let from = ((page ? page: 1) - 1) * limit;
     let blogs = [];
     if (item) {
         const regex = new RegExp(item, 'i');
