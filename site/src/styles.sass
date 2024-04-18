@@ -19,6 +19,9 @@ h1
 .-titulo
   color: $-color30
 
+.-titulo-gris
+  color: $-gris-claro
+
 .--titulo
   background-color: $-color30
   padding-top: 2px
@@ -26,3 +29,41 @@ h1
 
 .__titulo
    color: $-color60
+
+.-v-align
+  property: vertical-align,
+  class: align,
+  values: baseline top middle bottom text-bottom text-top
+
+
+
+
+
+/*  icon sizes */
+span.size-16
+  font-size: 16px
+  font-variation-settings: 'OPSZ' 20
+  text-decoration: underline
+
+
+span.size-20
+  font-size: 20px
+  font-variation-settings: 'OPSZ' 20
+  text-decoration: underline
+
+
+//grid
+
+.-col-2
+  display: grid
+  width: 100%
+  gap: 0
+  padding: 4px 0 4px 0
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+
+.-col-4
+  display: grid
+  width: 100%
+  gap: 0
+  padding: 4px 0 4px 0
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
