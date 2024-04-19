@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
   item: string  = '';
   search: boolean  = false;
   private actualPage: number = 1;
+  isloading: boolean = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -25,24 +26,30 @@ export class MainComponent implements OnInit {
   }
 
   getData() {
+    this.isloading = true;
     this.blogs = [];
     this.service.getBlogs().subscribe(response => {
       for(let i=0;response.blogs.length>i;i++){
         this.blogs.push(response.blogs[i]);
       }
+      this.isloading = false;
     }, error => {
       console.error(error);
+      this.isloading = false;
     });
   }
 
   getPlus() {
+    this.isloading = true;
     this.actualPage = this.actualPage + 1;
     this.service.getBlogs(this.actualPage).subscribe(response => {
       for(let i=0;response.blogs.length>i;i++){
         this.blogs.push(response.blogs[i]);
       }
+      this.isloading = false;
     }, error => {
       console.error(error);
+      this.isloading = false;
     });
   }
 

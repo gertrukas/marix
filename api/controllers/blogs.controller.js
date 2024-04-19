@@ -9,25 +9,36 @@ const blogsGetPublic = async (req, res = response) => {
     const { limit = 4, page, item } = req.query;
     let from = ((page ? page: 1) - 1) * limit;
     let blogs = [];
+    let countBlogs;
     if (item) {
         const regex = new RegExp(item, 'i');
-        blogs = await Blog.find({
-            $or: [{name: regex}],
-            $or: [{intro: regex}],
-            $or: [{description: regex}],
-            $and: [{active:true}]
-        })
-             .limit(Number(limit))
-             .skip(Number(from))
-             .sort({date: -1});
+        [blogs, countBlogs] = await Promise.all([
+            Blog.find({
+                $or: [{name: regex}],
+                $or: [{intro: regex}],
+                $or: [{description: regex}],
+                $and: [{active:true}]
+            })
+                 .limit(Number(limit))
+                 .skip(Number(from))
+                 .sort({date: -1}),
+
+            Blog.countDocuments({
+                    $or: [{name: regex}],
+                    $or: [{intro: regex}],
+                    $or: [{description: regex}],
+                    $and: [{active:true}]
+                })
+        ]);
     } else {
         blogs = await Blog.find({active:true})
              .limit(Number(limit))
              .skip(Number(from))
              .sort({date: -1});
     }
-
+    
     res.json({
+        countBlogs,
         blogs
     });
 };

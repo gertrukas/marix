@@ -1,7 +1,3 @@
 <form class="example-form -err">
-    <mat-form-field class="example-full-width -err">
-        <mat-label>Buscar en comunicados</mat-label>
-        <input matInput placeholder="Buscar" value="" (keyup)="search($event, input.value)" #input>
-        <mat-icon matSuffix (click)="search($event, input.value)">search</mat-icon>
-    </mat-form-field>
+  <input type="text" placeholder="Buscar" value="" (keyup)="search($event, input.value)" #input>
 </form>
