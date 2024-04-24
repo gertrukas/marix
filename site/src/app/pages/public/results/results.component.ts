@@ -14,6 +14,8 @@ export class ResultsComponent implements OnInit{
   item: string  = '';
   search: boolean  = false;
   private actualPage: number = 1;
+  isloading: boolean = false;
+  countBlogs: number = 0;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -37,35 +39,45 @@ export class ResultsComponent implements OnInit{
 
 
   getDataAll() {
+    this.isloading = true;
     this.blogs = [];
     this.service.getBlogs().subscribe(response => {
       for(let i=0;response.blogs.length>i;i++){
         this.blogs.push(response.blogs[i]);
       }
+      this.isloading = false;
     }, error => {
       console.error(error);
+      this.isloading = false;
     });
   }
 
   sheared(page: number, item: any) {
+    this.isloading = true;
     this.blogs = [];
     this.service.getBlogs(page, item).subscribe(response => {
       for(let i=0;response.blogs.length>i;i++){
         this.blogs.push(response.blogs[i]);
       }
+      this.countBlogs = response.countBlogs;
+      this.isloading = false;
     }, error => {
       console.error(error);
+      this.isloading = false;
     });
   }
 
   shearedPlus() {
+    this.isloading = true;
     this.actualPage = this.actualPage + 1;
     this.service.getBlogs(this.actualPage, this.item).subscribe(response => {
       for(let i=0;response.blogs.length>i;i++){
         this.blogs.push(response.blogs[i]);
       }
+      this.isloading = false;
     }, error => {
       console.error(error);
+      this.isloading = false;
     });
   }
 

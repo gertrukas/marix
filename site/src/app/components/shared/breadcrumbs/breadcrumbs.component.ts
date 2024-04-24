@@ -9,5 +9,7 @@ export class BreadcrumbsComponent {
 
   @Input() firstItem: string = '';
   @Input() search: boolean = false;
+  @Input() secondaryItem: string = '';
+  @Input() urlBack: string = '';
 
 }

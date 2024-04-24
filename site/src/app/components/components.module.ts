@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
+import {RouterLink} from "@angular/router";
 
 
 
@@ -24,12 +25,13 @@ import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component
     SearchComponent,
     BreadcrumbsComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule, 
-    MatFormFieldModule, 
-    MatInputModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        RouterLink
+    ]
 })
 export class ComponentsModule { }

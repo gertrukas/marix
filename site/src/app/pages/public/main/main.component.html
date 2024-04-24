@@ -80,10 +80,11 @@
 
           </div>
         </div>
-  <div class="text-end">
+      <mat-spinner *ngIf="isloading"></mat-spinner>
+      <div class="text-end">
 
-    <a (click)="getPlus()" class="-boton-azul btn btn-primary">ver mas</a>
-  </div>
+        <a (click)="getPlus()" class="-boton-azul btn btn-primary">ver mas</a>
+      </div>
 
   <div class="-pub-right text-end end">
      ¿¿¿¿¿
