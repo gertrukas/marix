@@ -2,97 +2,96 @@
 <main>
     <app-breadcrumbs [firstItem]="item" [search]="search"></app-breadcrumbs>
 
-
-  <section class="container-fluid px-4 py-5 text-center -hero">
-    <div class="">
-      <div>
-        <h2 class="display-5 fw-bold">The quick brown fox jumps over the lazy dog</h2>
+  <section class="container-fluid px-4 py-1 my-0 text-center -hero">
+     <div class="">
+        <div>
+          <h2 class="display-5 fw-bold">The quick brown fox jumps over the lazy dog</h2>
+        </div>
       </div>
-    </div>
-    <div class="lc-block col-lg-6 mx-auto mb-4">
-      <div>
-        <p class="lead ">Ladrar es el sistema de comunicación natural del perro, los motivos pueden ser diversos. Sin embargo, en ocasiones se convierte en un hábito molesto y difícil de controlar. Exploremos las causa</p>
-      </div>
-    </div>
-
-    <div class="lc-block d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <a class="btn btn-primary btn-lg px-4 gap-3" href="#" role="button">Más información</a>
-    </div>
-
-  </section>
-
-  <section class="-col-2">
-
-      <div class="d-flex align-items-center justify-content-center px-3 py-2">
-        <img src="/assets/images/img-prueba.svg" class="img-fluid"  width="100%" alt="ejemplo">
+      <div class="lc-block col-lg-6 mx-auto mb-4">
+        <div>
+          <p class="lead ">Ladrar es el sistema de comunicación natural del perro, los motivos pueden ser diversos. Sin embargo, en ocasiones se convierte en un hábito molesto y difícil de controlar. Exploremos las causa</p>
+        </div>
       </div>
 
-      <div class=" d-flex align-items-center justify-content-center px-3">
+      <div class="lc-block d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a class="btn btn-primary btn-lg px-4 gap-3" href="#" role="button">Más información</a>
+      </div>
 
-        <div class="">
-            <h1 class="-titulo">Thriving business with</h1>
-            <h1 class="-titulo-gris">true professionals</h1>
-            <br>
-            <p>Ladrar es el sistema de comunicación natural del perro, los motivos pueden ser diversos.</p>
-            <br>
-            <a href="#">ver mas<span class="material-symbols-outlined  size-16">open_in_new</span></a>
+    </section>
 
+    <section class="-col-2">
+
+        <div class="d-flex align-items-center justify-content-center px-3 py-2">
+          <img src="/assets/images/img-prueba.svg" class="img-fluid"  width="100%" alt="ejemplo">
         </div>
 
-      </div>
+        <div class=" d-flex align-items-center justify-content-center px-3">
 
-
-  </section>
-
-
-<section class="pb-3">
-
-        <div class="row px-5 mb-3 text-end --titulo">
-          <h1 class="__titulo">Comunicados</h1>
-        </div>
-
-
-        <div class="--card -err"  *ngFor="let blog of blogs ">
-          <div class="row">
-
-            <div class="col-md-6">
-              <a [routerLink]="['/blog', blog.slug]">
-                <!--<img [src]="blog._id | image: 'news'"  [alt]="blog.name" class="img-fluid">-->
-                <img src="/assets/images/portada.jpg" class="img-fluid" alt="ejemplo">
-              </a>
-            </div>
-
-            <div class="col-md-6 px-3">
-              <div class="card-body">
-                <h1 class="-titulo">{{blog.name}}</h1>
-
-                <p class="card-text"><small class="text-muted">{{ blog.date | date: 'dd MMM yyyy'}}</small></p>
-
-                <div [innerHTML]="blog.intro | truncate: 200" class="-intro" ></div>
-
-                <div class="text-end">
-
-                  <a [routerLink]="['/blog']" [queryParams]="{ blog: blog | json }" class="-boton-azul btn btn-primary">ver mas</a>
-                </div>
-
-              </div>
-            </div>
+          <div class="">
+              <h1 class="-titulo">Thriving business with</h1>
+              <h1 class="-titulo-gris">true professionals</h1>
+              <br>
+              <p>Ladrar es el sistema de comunicación natural del perro, los motivos pueden ser diversos.</p>
+              <br>
+              <a href="#">ver mas<span class="material-symbols-outlined  size-16">open_in_new</span></a>
 
           </div>
+
         </div>
-      <mat-spinner *ngIf="isloading"></mat-spinner>
-      <div class="text-end">
-
-        <a (click)="getPlus()" class="-boton-azul btn btn-primary">ver mas</a>
-      </div>
-
-  <div class="-pub-right text-end end">
-     ¿¿¿¿¿
-   </div>
-
-</section>
 
 
+    </section>
 
 
-</main>
+  <section class="pb-3">
+
+          <div class="--titulo">
+            <h1 class="__titulo">Comunicados</h1>
+          </div>
+
+
+          <div class="&#45;&#45;card -err"  *ngFor="let blog of blogs ">
+            <div class="row">
+
+              <div class="col-md-6">
+                <a [routerLink]="['/blog', blog.slug]">
+                  &lt;!&ndash;<img [src]="blog._id | image: 'news'"  [alt]="blog.name" class="img-fluid">&ndash;&gt;
+                  <img src="/assets/images/portada.jpg" class="img-fluid" alt="ejemplo">
+                </a>
+              </div>
+
+              <div class="col-md-6 px-3">
+                <div class="card-body">
+                  <h1 class="-titulo">{{blog.name}}</h1>
+
+                  <p class="card-text"><small class="text-muted">{{ blog.date | date: 'dd MMM yyyy'}}</small></p>
+
+                  <div [innerHTML]="blog.intro | truncate: 200" class="-intro" ></div>
+
+                  <div class="text-end">
+
+                    <a [routerLink]="['/blog']" [queryParams]="{ blog: blog | json }" class="-boton-azul btn btn-primary">ver mas</a>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <mat-spinner *ngIf="isloading"></mat-spinner>
+        <div class="text-end">
+
+          <a (click)="getPlus()" class="-boton-azul btn btn-primary">ver mas</a>
+        </div>
+
+    <div class="-pub-right text-end end">
+       ¿¿¿¿¿
+     </div>
+
+  </section>
+
+
+
+
+  </main>

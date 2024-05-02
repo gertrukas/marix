@@ -1,10 +1,12 @@
-<section class="breadcrumb">
-    <mat-icon matSuffix class="mt-1" routerLink="/">home</mat-icon>&nbsp;
-    <a class=" " routerLink="/">
-        <span class="text">Inicio</span>
-    </a>&nbsp;
-    <span class="text" *ngIf="firstItem && search"> / Resultados / La busqueda "{{ firstItem | titlecase }}"</span>
-    <span class="text" *ngIf="firstItem && !search && !secondaryItem"> / {{ firstItem }}</span>
-    <span class="text" *ngIf="secondaryItem && !search" [routerLink]="urlBack"> / {{ firstItem }}</span>
-    <span class="text" *ngIf="secondaryItem && !search"> / {{ secondaryItem }}</span>
+
+
+
+<section class="breadcrumb flat m-0 p-0">
+    <a class="active" routerLink="/"><span class="text active">Inicio</span></a>&nbsp;
+    <span class="-bc" *ngIf="firstItem && search"> Resultados de las búsqueda "{{ firstItem | titlecase }}"</span>
+    <span class="-bc" *ngIf="firstItem && !search && !secondaryItem">{{ firstItem }}</span>
+    <span class="-bc" *ngIf="secondaryItem && !search" [routerLink]="urlBack"> < {{ firstItem }}</span>
+    <span class="-bc" *ngIf="secondaryItem && !search"> {{ secondaryItem }}</span>
 </section>
+
+

@@ -1,29 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SearchComponent } from './shared/search/search.component';
+import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
+import { ServiciosBeneficiosComponent } from './shared/servicios-beneficios/servicios-beneficios.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
 import {RouterLink} from "@angular/router";
+
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    BreadcrumbsComponent,
     FooterComponent,
+    HeaderComponent,
     SearchComponent,
-    BreadcrumbsComponent
+    ServiciosBeneficiosComponent,
+
   ],
   exports: [
-    HeaderComponent,
+    BreadcrumbsComponent,
     FooterComponent,
+    HeaderComponent,
     SearchComponent,
-    BreadcrumbsComponent
+    ServiciosBeneficiosComponent,
   ],
     imports: [
         CommonModule,
