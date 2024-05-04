@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const BlogSchema =  Schema({
+const TagSchema =  Schema({
     name: {
         type: String,
     },
@@ -16,18 +16,11 @@ const BlogSchema =  Schema({
     date: {
         type: Date,
     },
-    post_type : {
-        type: String,
-    },
     image: {
         type: String,
     },
     images: [{
         type: String
-    }],
-    tags: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
     }],
     active: {
         type: Boolean,
@@ -39,9 +32,9 @@ const BlogSchema =  Schema({
     }
 });
 
-BlogSchema.methods.toJSON = function () {
+TagSchema.methods.toJSON = function () {
     const { __v, ...model } = this.toObject();
     return model;
 }
 
-module.exports = model('Blog',  BlogSchema);
+module.exports = model('Tag',  TagSchema);

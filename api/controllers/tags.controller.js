@@ -1,19 +1,19 @@
 const { request, response } = require('express');
-const { Blog } = require('../models');
+const { Tag } = require('../models');
 const urlSlug = require('url-slug');
 const { fileUpload: fileUploadHelper } = require("../helpers");
 const { filesUpload: filesUploadHelper } = require("../helpers");
 
-const blogsGetPublic = async (req, res = response) => {
+const tagsGetPublic = async (req, res = response) => {
 
     const { limit = 4, page, item } = req.query;
     let from = ((page ? page: 1) - 1) * limit;
-    let blogs = [];
-    let countBlogs;
+    let tags = [];
+    let countTags;
     if (item) {
         const regex = new RegExp(item, 'i');
-        [blogs, countBlogs] = await Promise.all([
-            Blog.find({
+        [tags, countTags] = await Promise.all([
+            Tag.find({
                 $or: [{name: regex}],
                 $or: [{intro: regex}],
                 $or: [{description: regex}],
@@ -23,7 +23,7 @@ const blogsGetPublic = async (req, res = response) => {
                  .skip(Number(from))
                  .sort({date: -1}),
 
-            Blog.countDocuments({
+            Tag.countDocuments({
                     $or: [{name: regex}],
                     $or: [{intro: regex}],
                     $or: [{description: regex}],
@@ -31,52 +31,52 @@ const blogsGetPublic = async (req, res = response) => {
                 })
         ]);
     } else {
-        blogs = await Blog.find({active:true})
+        tags = await Tag.find({active:true})
              .limit(Number(limit))
              .skip(Number(from))
              .sort({date: -1});
     }
 
     res.json({
-        countBlogs,
-        blogs
+        countTags,
+        tags
     });
 };
 
-const blogsChildrenGet = async ( req = request, res = response) => {
+const tagsChildrenGet = async ( req = request, res = response) => {
     const id = req.params.id;
 
-    const blogs = await Blog.find({parent:id, delete:false});
+    const tags = await Tag.find({parent:id, delete:false});
     res.status(200).json({
-        blogs
+        tags
     });
 }
 
-const blogGetPublic = async ( req = request, res = response) => {
+const tagGetPublic = async ( req = request, res = response) => {
     const slug = req.params.slug;
 
-    const blog = await Blog.findOne({slug}, {author:0, active:0, delete:0,  intro:0, images:0, post_type:0});
+    const tag = await Tag.findOne({slug}, {author:0, active:0, delete:0,  intro:0, images:0, post_type:0});
     res.status(200).json({
-        blog
+        tag
     });
 }
 
-const blogsGet = async (req, res = response) => {
+const tagsGet = async (req, res = response) => {
 
-    const [ totalBlogs, blogs, blogsAll] = await Promise.all([
-        Blog.countDocuments({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false})
+    const [ totalTags, tags, tagsAll] = await Promise.all([
+        Tag.countDocuments({delete:false, parent:{$exists: false}}),
+        Tag.find({delete:false, parent:{$exists: false}}),
+        Tag.find({delete:false})
     ]);
 
     res.json({
-        totalBlogs,
-        blogs,
-        blogsAll
+        totalTags,
+        tags,
+        tagsAll
     });
 };
 
-const blogPost = async (req = request, res = response) => {
+const tagPost = async (req = request, res = response) => {
 
     let { name, description, intro, date, post_type } = req.body;
     let image;
@@ -99,51 +99,51 @@ const blogPost = async (req = request, res = response) => {
     let data;
     data = {name, description, intro, date, post_type, slug};
     data.image = image;
-    let blog = new Blog(data);
+    let tag = new Tag(data);
 
     // Guardar en Base de datos
-    await blog.save();
+    await tag.save();
 
-    blog = await Blog.findByIdAndUpdate(blog._id, {$push: {images: {$each: images}}}, {new:true});
+    tag = await Tag.findByIdAndUpdate(tag._id, {$push: {images: {$each: images}}}, {new:true});
 
     res.json({
-        blog
+        tag
     })
 }
 
-const blogActive = async (req = request, res = response) => {
+const tagActive = async (req = request, res = response) => {
 
     let { id, option } = req.body;
 
-    const [blog] = await Promise.all([
-        Blog.findByIdAndUpdate(id,{active:option}, {new:true})
+    const [tag] = await Promise.all([
+        Tag.findByIdAndUpdate(id,{active:option}, {new:true})
     ]);
 
     const authenticatedUser = req.user;
 
     res.json({
-        blog,
+        tag,
         authenticatedUser
     });
 }
 
-const blogShow = async ( req = request, res = response) => {
+const tagShow = async ( req = request, res = response) => {
     const id = req.params.id;
     const { name, slug } = req.body;
 
-    const blog = await Blog.find({id, name, slug});
+    const tag = await Tag.find({id, name, slug});
     res.status(200).json({
-        blog
+        tag
     });
 }
 
-const blogPut = async ( req = request, res = response) => {
+const tagPut = async ( req = request, res = response) => {
     const id = req.params.id;
     let { name, description, intro, date, post_type } = req.body;
     let image;
     let slug = urlSlug(name);
     let images;
-    let blog;
+    let tag;
     let data = {name, description, intro, date, post_type, slug};
     if(req.files){
         if(req.files.file) {
@@ -153,44 +153,44 @@ const blogPut = async ( req = request, res = response) => {
         if(req.files.image){
             if(Array.isArray(req.files.image)) {
                 images = await filesUploadHelper(req.files.image, undefined, 'news');
-                await Blog.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
+                await Tag.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             } else {
                 req.files.file = req.files.image
                 imageGallery = await fileUploadHelper(req.files, undefined, 'news');
                 images.push(imageGallery);
-                await Blog.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
+                await Tag.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             }
         }
     }
 
-    blog = await Blog.findByIdAndUpdate(id, data, {new: true});
+    tag = await Tag.findByIdAndUpdate(id, data, {new: true});
 
 
     res.status(201).json({
-        blog
+        tag
     });
 }
 
-const blogDelete = async (req = request, res = response) => {
+const tagDelete = async (req = request, res = response) => {
     const id = req.params.id;
 
-    const [blog] = await Promise.all([
-        Blog.findByIdAndUpdate(id,{delete:true}, {new:true})
+    const [tag] = await Promise.all([
+        Tag.findByIdAndUpdate(id,{delete:true}, {new:true})
     ]);
 
     res.json({
-        blog,
+        tag,
     });
 }
 
 module.exports = {
-    blogsGetPublic,
-    blogGetPublic,
-    blogsGet,
-    blogPost,
-    blogActive,
-    blogShow,
-    blogPut,
-    blogsChildrenGet,
-    blogDelete
+    tagsGetPublic,
+    tagGetPublic,
+    tagsGet,
+    tagPost,
+    tagActive,
+    tagShow,
+    tagPut,
+    tagsChildrenGet,
+    tagDelete
 }

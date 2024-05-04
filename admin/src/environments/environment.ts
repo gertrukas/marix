@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   appVersion: 'v1.0.1',
   USERDATA_KEY: 'authf649fc9a5f55',
+  NAME_APP: 'Matrix',
   isMockEnabled: false,
   apiUrl: 'http://localhost:8080/api',
   adminUrl: 'http://localhost:4200/',

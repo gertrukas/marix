@@ -70,10 +70,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-blog let-ri="rowIndex">
                 <tr class="p-selectable-row">
-                    <td (click)="editBlog(blog)">
+                    <td >
                         <div class="d-flex align-items-center">
                             <div class="symbol me-5">
-                                <img [src]="blog._id | image: 'news'" width="100px" class="cursor-pointer" [alt]="blog.name" (click)="editBlog(blog)"/>
+                                <img [src]="blog._id | image: 'blogs'" (error)="replaceImage(image)"
+                                     width="100px" class="cursor-pointer"
+                                     [alt]="blog.name" (click)="editBlog(blog)"/>
                             </div>
                         </div>
                     </td>

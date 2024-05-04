@@ -6,6 +6,7 @@ export const environment = {
   production: true,
   appVersion: 'v8.0.37',
   USERDATA_KEY: 'authf649fc9a5f55',
+  NAME_APP: 'Matrix',
   isMockEnabled: false,
   apiUrl: 'https://backend.arantzazepeda.com/api',
   pageUrl: 'https://arantzazepeda.com/',

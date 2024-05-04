@@ -19,6 +19,10 @@ const Routing: Routes = [
     loadChildren: () => import('../pages/admin/categories/categories.module').then(m => m.CategoriesModule)
   },
   {
+    path: 'tags',
+    loadChildren: () => import('../pages/admin/tags/tags.module').then(m => m.TagsModule)
+  },
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

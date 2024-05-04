@@ -20,6 +20,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FakeAPIService } from './_fake/fake-api.service';
 // #fake-end#
 
+
 function appInitializer(authService: AuthService) {
   return () => {
     return new Promise((resolve) => {
@@ -50,7 +51,7 @@ function appInitializer(authService: AuthService) {
     CKEditorModule,
     AccordionModule,
     NgxDropzoneModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
 
   ],
   providers: [

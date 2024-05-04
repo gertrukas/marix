@@ -41,6 +41,7 @@
     "clipboard": "^2.0.8",
     "line-awesome": "^1.3.0",
     "ng-apexcharts": "^1.5.12",
+    "ng-fallimg": "^0.0.1",
     "ng-inline-svg": "^13.0.0",
     "ngx-clipboard": "^14.0.1",
     "ngx-dropzone": "^3.0.0",

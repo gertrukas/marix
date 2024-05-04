@@ -23,14 +23,14 @@ router.put('/:collection/:id', [
     fileValidate,
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'No es un id valido').isMongoId(),
-    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs'])),
+    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs', 'news'])),
     validateFields
 ], updatedFile);
 
 router.get('/:collection/:id', [
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'No es un id valido').isMongoId(),
-    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs'])),
+    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs', 'news'])),
     validateFields
 ], imageShow);
 
@@ -38,7 +38,7 @@ router.get('/:collection/:id/:img', [
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'No es un id valido').isMongoId(),
     check('img', 'El nombre de la imagen es obligatorio').not().isEmpty(),
-    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs'])),
+    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs', 'news'])),
     validateFields
 ], imageShowGallery);
 
@@ -46,7 +46,7 @@ router.delete('/:collection/:id/:img', [
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'No es un id valido').isMongoId(),
     check('img', 'El nombre de la imagen es obligatorio').not().isEmpty(),
-    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs'])),
+    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs', 'news'])),
     validateFields
 ], deletedFile);
 
@@ -54,7 +54,7 @@ router.delete('/gallery/:collection/:id/:img', [
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'No es un id valido').isMongoId(),
     check('img', 'El nombre de la imagen es obligatorio').not().isEmpty(),
-    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs'])),
+    check('collection').custom(c => allowedCollections(c, ['users', 'categories', 'tags', 'blogs', 'news'])),
     validateFields
 ], deletedImageGallery);
 

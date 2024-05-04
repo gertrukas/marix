@@ -15,6 +15,7 @@ class Server{
             emails: '/api/emails',
             password: '/api/password',
             search: '/api/search',
+            tags: '/api/tags',
             users: '/api/users',
             uploads: '/api/uploads',
         }
@@ -51,6 +52,7 @@ class Server{
         this.app.use(this.paths.emails, require('../routes/emails.route'));
         this.app.use(this.paths.password, require('../routes/password.route'));
         this.app.use(this.paths.search, require('../routes/search.route'));
+        this.app.use(this.paths.tags, require('../routes/tags.route'));
         this.app.use(this.paths.uploads, require('../routes/upload.route'));
         this.app.use(this.paths.users, require('../routes/user.route'));
     }

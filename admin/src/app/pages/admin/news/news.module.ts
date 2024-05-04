@@ -19,7 +19,8 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { PipesModule } from "../../../pipes/pipes.module";
 import { EditorModule } from "primeng/editor";
 import { NgxDropzoneModule } from "ngx-dropzone";
-import {CalendarModule} from "primeng/calendar";
+import { CalendarModule } from "primeng/calendar";
+import {NgFallimgModule} from "ng-fallimg";
 
 
 @NgModule({
@@ -45,7 +46,10 @@ import {CalendarModule} from "primeng/calendar";
         PipesModule,
         EditorModule,
         NgxDropzoneModule,
-        CalendarModule
+        CalendarModule,
+        NgFallimgModule.forRoot({
+            default: 'assets/media/misc/image.png'
+        })
     ]
 })
 export class NewsModule { }

@@ -15,7 +15,7 @@ export const locale = {
       DASHBOARD: 'Dashboard',
       CATEGORIES: 'Categories',
       USERS: 'Users',
-      TAGS: 'Tags',
+      TAGS: 'Tag',
       BLOGS: 'Blogs',
     },
     AUTH: {

@@ -1,46 +1,40 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Tag } from "../../../interfaces/tag";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Title } from "@angular/platform-browser";
+import { TagsService } from "../../../services/admin/tags.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { NgForm } from "@angular/forms";
 import { AuthService, UserType } from "../../../modules/auth";
-import { BlogsService } from "../../../services/admin/blogs.service";
-import { Blog } from "../../../interfaces/blog";
-import { TranslationService } from "../../../modules/i18n";
-import { UploadsService } from "../../../services/admin/uploads.service";
 
 
 @Component({
-  selector: 'app-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  selector: 'app-tags',
+  templateUrl: './tags.component.html',
+  styleUrls: ['./tags.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class TagsComponent implements OnInit {
 
   @ViewChild('btn') btn: ElementRef;
 
-  blogs: Blog[]=[];
-  blogDialog: boolean;
+  tags: Tag[]=[];
+  tagDialog: boolean;
   unit: boolean;
-  blog:{ date: Date; image: string; images: any[]; intro: string; name: string; description: string; active: boolean; _id: string; delete: boolean }=<Blog>{
+  tag:{ _id: string;  name: string; slug: string; description: string;  active: boolean; image: string }=<Tag>{
     _id: '',
-    name:  '',
-    intro:  '',
+    name: '',
+    slug: '',
     description: '',
-    image: '',
-    images: [],
-    date: new Date(),
-    delete: false,
-    active: true,
+    image:'',
+    active: false,
   };
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean;
   submitted: boolean;
-  selectedBlogs: Blog[];
-  files: File[] = [];
+  selectedTags: Tag[];
+  roles:any[]=[];
   statuses: any[];
-  types:any[]=[];
-  type={};
+  types: any[];
   loading: boolean = true;
   image:any;
   imageInit:any;
@@ -49,21 +43,16 @@ export class NewsComponent implements OnInit {
   viewPassword:boolean=false;
   viewPass:boolean=false;
   pError:boolean=false;
+  role={};
   private unsubscribe: Subscription[] = [];
   signedUser$: Observable<UserType>;
 
 
   constructor(private titleService: Title,
-              public translation: TranslationService,
-              private uploads: UploadsService,
               private cdr: ChangeDetectorRef,
-              private service: BlogsService,
+              private service: TagsService,
               private auth: AuthService) {
-    this.types = [
-                  {name: 'Post', code: 'post'},
-                  {name: 'Categoria', code: 'category'},
-                ]
-    this.titleService.setTitle("Comunicados");
+    this.titleService.setTitle("Etiquetas");
     const loadingSubscr = this.isLoading$
         .asObservable()
         .subscribe((res) => (this.isLoading = res));
@@ -84,14 +73,10 @@ export class NewsComponent implements OnInit {
   }
 
   getData(){
-    this.service.getBlogs().subscribe(response => {
-      console.log(response);
-      this.blogs = response.blogs;
+    this.service.getTags().subscribe(response => {
+      this.tags = response.tags;
+      console.log(this.tags);
       this.loading = false;
-      this.statuses = [
-        {label: 'Activo', value: true},
-        {label: 'Des Activo', value: false},
-      ];
       this.cdr.detectChanges();
     }, error => {
       console.log(error);
@@ -107,41 +92,35 @@ export class NewsComponent implements OnInit {
   }
 
 
+
   replaceImage(image: any){
     image.onerror = '';
-    image.src = 'assets/media/misc/image.png'
+    image.src = 'assets/images/missing.png'
   }
 
   created() {
-    this.blog = {
+    this.tag = {
       _id: '',
       name: '',
-      intro: '',
+      slug: '',
       description: '',
-      image: '',
-      images: [],
-      date: new Date(),
-      delete: false,
-      active: true,
+      image:'',
+      active: false,
     };
     this.create=true;
     this.submitted = false;
-    this.blogDialog = true;
+    this.tagDialog = true;
   }
 
-  editBlog(blog: Blog) {
-    this.blog = {...blog};
-    this.blogDialog = true;
-    this.image = '';
-    this.imageInit = blog.image;
-    this.thumbnail = '';
-    this.blog.date = new Date(this.blog.date);
+  editTag(tag: Tag) {
+    this.tag = {...tag};
+    this.tagDialog = true;
     this.create=false;
     this.pError=false;
   }
 
   hideDialog() {
-    this.blogDialog = false;
+    this.tagDialog = false;
     this.submitted = false;
   }
 
@@ -153,102 +132,98 @@ export class NewsComponent implements OnInit {
     return true;
   }
 
-  saveBlog(form: NgForm){
+  saveTag(form: NgForm){
+    console.log(form.value.description);
     if (this.create) {
-      this.store(form);
-      this.clearDropZone();
+      this.store(form.value.name, form.value.description);
     }
     else {
-      this.update(form);
-      this.clearDropZone();
+      this.update(form.value.name, form.value.description);
     }
-    this.blogDialog = false;
-    this.blog = {
+    this.tagDialog = false;
+    this.tag = {
       _id: '',
       name: '',
-      intro: '',
+      slug: '',
       description: '',
-      image: '',
-      images: [],
-      date: new Date(),
-      delete: false,
-      active: true,
+      image:'',
+      active: false,
     };
     this.pError=false;
   }
 
-  store(form: NgForm) {
+  store(name: string, description: string) {
     this.isLoading$.next(true);
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('name', form.value.name);
-    params.append('description', form.value.description);
-    params.append('type_post', form.value.intro);
-    params.append('intro', form.value.intro);
-    params.append('date', form.value.date);
-    for(let p=0;this.files.length>p;p++){
-      params.append('image', this.files[p]);
-    }
+    params.append('name', name);
+    params.append('description', description);
     if (this.image != ''){
       params.append('file', this.image);
     }
-    this.service.postBlog(params).subscribe( response => {
-      console.log(response);
-      this.blogs.push(response.blog);
+    this.service.postTag(params).subscribe( response => {
+      this.tags.push(response.tag);
       this.isLoading$.next(false);
       this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: 'La noticia se creó con exíto.',
+        text: 'La etiqueta se creó con exíto.',
         timer: 2000
       });
     }, error => {
       console.log(error);
+      let msg;
+      if (error.error.errors > 0){
+        msg = error.error.errors[0].msg;
+      } else {
+        msg = error.error
+      }
       this.isLoading$.next(false);
       Swal.fire({
         icon: 'error',
         title: '¡Error!',
-        text: error.error.msg,
+        text: msg,
         timer: 2000
       });
       this.cdr.detectChanges();
     });
   }
 
-  update(form: NgForm) {
+  update(name: string, description: string) {
     this.isLoading$.next(true);
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('name', form.value.name);
-    params.append('description', form.value.description);
-    params.append('type_post', form.value.intro);
-    params.append('intro', form.value.intro);
-    for(let p=0;this.files.length>p;p++){
-      params.append('image', this.files[p]);
-    }
+    params.append('name', name);
+    params.append('description', description);
     if (this.image != ''){
       params.append('file', this.image);
     }
-    this.service.putBlog(this.blog._id, params).subscribe( response => {
-      const index = this.blogs.findIndex(item => item._id == response.blog._id);
-      this.blogs[index] = response.blog;
+    this.service.putTag(this.tag._id, params).subscribe( response => {
+      const index = this.tags.findIndex(item => item._id == response.tag._id);
+      this.tags[index] = response.tag;
       this.isLoading$.next(false);
       this.getData();
       this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: 'La noticia se actualizo con exíto.',
+        text: 'La etiqueta se actualizo con exíto.',
         timer: 3000
       });
     }, error => {
       console.log(error);
+      let msg;
+      if (error.error.errors > 0){
+        msg = error.error.errors[0].msg;
+      } else {
+        msg = error.error
+      }
       this.isLoading$.next(false);
       Swal.fire({
         icon: 'error',
         title: '¡Error!',
-        text: error.error.msg,
+        text: msg,
         timer: 2000
       });
       this.cdr.detectChanges();
@@ -256,30 +231,30 @@ export class NewsComponent implements OnInit {
   }
 
 
-  active(blog: string, option: boolean){
+  active(tag: string, option: boolean){
     this.isLoading$.next(true);
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('id', blog);
+    params.append('id', tag);
     params.append('option', option.toString());
-    this.service.activeBlog(params).subscribe(response => {
+    this.service.activeTag(params).subscribe(response => {
       let active = '';
-      const index = this.blogs.findIndex(item => item._id == response.blog._id);
-      this.blogs[index] = response.blog;
+      const index = this.tags.findIndex(item => item._id == response.tag._id);
+      this.tags[index] = response.tag;
       this.isLoading$.next(false);
       this.getData();
-      if (response.blog.active){
+      if (response.tag.active){
         active = 'activo';
       } else {
         active = 'des activo';
       }
+      this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: `La noticia se ${active} con exíto.`,
+        text: `La etiqueta se ${active} con exíto.`,
         timer: 2000
       });
-      this.cdr.detectChanges();
     }, error => {
       console.log(error);
       this.isLoading$.next(false);
@@ -293,10 +268,10 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  delete(blog: string){
+  delete(tag: string){
     Swal.fire({
-      title: '¿Esta seguro que decea eliminar la noticia?',
-      text: '¡Esta apunto de eliminar la noticia!',
+      title: '¿Esta seguro que decea eliminar la etiqueta?',
+      text: '¡Esta apunto de eliminar la etiqueta!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si',
@@ -304,15 +279,15 @@ export class NewsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.isLoading$.next(true);
-        this.service.deleteBlog(blog).subscribe(response => {
-          const index = this.blogs.findIndex(item => item._id == response.blog._id);
-          this.blogs.splice(index, 1);
+        this.service.deleteTag(tag).subscribe(response => {
+          const index = this.tags.findIndex(item => item._id == response.tag._id);
+          this.tags.splice(index, 1);
           this.isLoading$.next(false);
           this.cdr.detectChanges();
           Swal.fire({
             icon: 'success',
             title: '¡Eliminado!',
-            text: 'La noticia se elimino con exíto.',
+            text: 'La etiqueta se elimino con exíto.',
             timer: 2000
           });
         }, error => {
@@ -329,27 +304,13 @@ export class NewsComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
             'Cancelado',
-            'No se elimino la noticia',
+            'No se elimino la etiqueta',
             'error'
         )
       }
     })
   }
 
-  onSelect(event: any) {
-    this.files.push(...event.addedFiles);
-    this.cdr.detectChanges();
-  }
-
-  onRemove(event: any) {
-    this.files.splice(this.files.indexOf(event), 1);
-    this.cdr.detectChanges();
-  }
-
-  clearDropZone(){
-    this.files.splice(0);
-    this.cdr.detectChanges();
-  }
 
   getImage(e: any){
     let file = e.target.files[0];
@@ -367,38 +328,6 @@ export class NewsComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
-
-  deleteImageGallery(img: string){
-    this.isLoading$.next(true);
-    this.uploads.deleteUploadGallery('blogs', this.blog._id, img).subscribe(response => {
-      this.getData();
-      this.isLoading$.next(false);
-      Swal.fire({
-        icon: 'success',
-        title: '¡Exito!',
-        text: `La imagen se eliminocon exíto.`,
-        timer: 2000
-      });
-      this.cdr.detectChanges();
-    }, error => {
-      let message;
-      if(error.status == 400){
-        message = error.error.msg;
-      } else {
-        message = 'Se encontro un error, comunicate con el administrador del web-site';
-      }
-      console.log(error);
-      this.isLoading$.next(false);
-      Swal.fire({
-        icon: 'error',
-        title: '¡Error!',
-        text: message,
-        timer: 2000
-      });
-      this.cdr.detectChanges();
-    });
-  }
-
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
