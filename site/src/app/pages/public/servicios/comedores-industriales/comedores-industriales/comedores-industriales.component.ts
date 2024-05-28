@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ComedoresIndustrialesComponent {
 
-  secondaryItem: string = 'Servicios';
-  item: string  = 'Comedores Industriales';
+  secondaryItem: string = 'Comedores Industriales';
+  item: string  = 'Servicios';
   search: boolean  = false;
 
 }

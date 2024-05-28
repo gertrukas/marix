@@ -2,6 +2,15 @@
 @import "../node_modules/bootstrap/scss/bootstrap"
 @import "src/assets/sass/variables"
 
+.-script
+  font-family: "Kalam", cursive
+  font-weight: 300
+  font-style: normal
+
+body
+  color: $-gris
+
+
 .-err
   border: 1px solid red
 
@@ -12,6 +21,25 @@ h1
   font-size: 34px
   font-weight: 400
 
+//------- botones --------
+//
+//
+//
+
+.-btn-ver-mas, .btn-ver-mas:active, .-btn-ver-mas:visited
+  color: white
+  background-color: $-gris
+  text-decoration: none
+  padding: 8px 28px 8px 28px
+  border-radius: 6px
+
+
+.-btn-ver-mas:hover
+    background-color: #8d8d8d
+
+//------------------------
+
+
 .--card
   border: 1px solid #d5d8dc
   border-radius: 10px
@@ -20,29 +48,27 @@ h1
   padding: 16px
 
 .-titulo
-  color: $-color30
+  color: $-color10
+  font-weight: bold
 
 .-titulo-gris
   color: $-gris-claro
 
 .--titulo
-  background-color: $-color30
   padding: 2px 20px 1px 0
   margin-top: 1px
   margin-bottom: 8px
   text-align: end
+  border: 1px solid  $-color30
 
 .__titulo
-   color: $-color10
+  color: $-color10
+
 
 .-v-align
   property: vertical-align,
   class: align,
   values: baseline top middle bottom text-bottom text-top
-
-
-
-
 
 
 /*  icon sizes */
@@ -57,6 +83,14 @@ span.size-20
   font-variation-settings: 'OPSZ' 20
   text-decoration: underline
 
+.--servicios
+
+  .__card
+    border: 1px solid rgba(0, 0, 0, 0.1)
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)
+
+
+
 
 //grid
 
@@ -66,6 +100,13 @@ span.size-20
   gap: 0
   padding: 4px 0 4px 0
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+
+.-col-3
+  display: grid
+  width: 100%
+  gap: 20px
+  padding: 12px 12px 12px 12px
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))
 
 .-col-4
   display: grid

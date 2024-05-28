@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./box-lunch.component.sass']
 })
 export class BoxLunchComponent {
-  secondaryItem: string = 'Servicios';
-  item: string  = 'Box Lunch';
+  secondaryItem: string = 'EL Box Lunch ';
+  item: string  = 'Servicios';
   search: boolean  = false;
 }
