@@ -117,7 +117,7 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <img [src]="_user.id | image: 'users'" [alt]="_user.name" />
+    <img [src]="_user.id | image: 'users' : _user.image" [alt]="_user.name" />
   </div>
   <!-- end::Toggle  -->
   <app-user-inner></app-user-inner>

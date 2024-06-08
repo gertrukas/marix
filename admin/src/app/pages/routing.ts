@@ -19,6 +19,10 @@ const Routing: Routes = [
     loadChildren: () => import('../pages/admin/categories/categories.module').then(m => m.CategoriesModule)
   },
   {
+    path: 'products',
+    loadChildren: () => import('../pages/admin/products/products.module').then(m => m.ProductsModule)
+  },
+  {
     path: 'tags',
     loadChildren: () => import('../pages/admin/tags/tags.module').then(m => m.TagsModule)
   },

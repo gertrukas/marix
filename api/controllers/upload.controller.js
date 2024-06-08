@@ -1,6 +1,6 @@
 const {request, response} = require("express");
 const { fileUpload: fileUploadHelper } = require("../helpers");
-const { Blog, Category, User } = require('../models');
+const { Blog, Category, User, Tag, Product} = require('../models');
 const path = require("path");
 const fs = require("fs");
 
@@ -33,8 +33,11 @@ const fileUploadGallery = async (req = request, res = response) => {
                 model = await Blog.findById(id);
                 break;
             case 'tags':
-                model = await Blog.findById(id);
-                break;            
+                model = await Tag.findById(id);
+                break;
+            case 'products':
+                model = await Product.findById(id);
+                break;
         }
         const images = model.images;
         images.push(name);
@@ -50,7 +53,7 @@ const fileUploadGallery = async (req = request, res = response) => {
     }
 }
 
-const updatedFile = async (req= request, res=response) =>{
+const updatedFile = async (req= request, res=response) => {
     const { id, collection } = req.params;
     let model;
     switch (collection){
@@ -79,13 +82,21 @@ const updatedFile = async (req= request, res=response) =>{
             }
             break;
         case 'tags':
-            model = await Blog.findById(id);
+            model = await Tag.findById(id);
             if (!model){
                 return  res.status(400).json({
                     msg: `No existe un tags con el id ${id}`
                 });
             }
-            break;    
+            break;
+        case 'products':
+            model = await Product.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe un producto con el id ${id}`
+                });
+            }
+            break;
         default:
             return res.status(500).json({msg: 'Se me olvido Validar esto'});
     }
@@ -143,13 +154,21 @@ const imageShow = async (req= request, res= response) => {
             }
             break;
         case 'tags':
-            model = await Blog.findById(id);
+            model = await Tag.findById(id);
             if (!model){
                 return  res.status(400).json({
                     msg: `No existe un tag con el id ${id}`
                 });
             }
-            break;            
+            break;
+        case 'products':
+            model = await Product.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe un producto con el id ${id}`
+                });
+            }
+            break;
         default:
             return res.status(500).json({msg: 'Se me olvido Validar esto'});
     }
@@ -188,6 +207,39 @@ const imageShowGallery = async (req= request, res= response) => {
                 });
             }
             break;
+        case 'categories':
+            model = await Category.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+
+        case 'blogs':
+            model = await Blog.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'tags':
+            model = await Tag.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'products':
+            model = await Product.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe un producto con el id ${id}`
+                });
+            }
+            break;
         default:
             return res.status(500).json({msg: 'Se me olvido Validar esto'});
     }
@@ -223,6 +275,39 @@ const deletedFile = async (req= request, res=response) =>{
             if (!model){
                 return  res.status(400).json({
                     msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'categories':
+            model = await Category.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+
+        case 'blogs':
+            model = await Blog.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'tags':
+            model = await Tag.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'products':
+            model = await Product.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe un producto con el id ${id}`
                 });
             }
             break;
@@ -272,6 +357,39 @@ const deletedImageGallery = async (req= request, res=response) =>{
             if (!model){
                 return  res.status(400).json({
                     msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'categories':
+            model = await Category.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+
+        case 'blogs':
+            model = await Blog.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'tags':
+            model = await Tag.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe una noticia con el id ${id}`
+                });
+            }
+            break;
+        case 'products':
+            model = await Product.findById(id);
+            if (!model){
+                return  res.status(400).json({
+                    msg: `No existe un producto con el id ${id}`
                 });
             }
             break;

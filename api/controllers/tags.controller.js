@@ -84,14 +84,14 @@ const tagPost = async (req = request, res = response) => {
     let images = [];
     if(req.files){
         if(req.files.file){
-            image = await fileUploadHelper(req.files, undefined, 'news');
+            image = await fileUploadHelper(req.files, undefined, 'tags');
         }
         if(req.files.image){
             if(Array.isArray(req.files.image)) {
-                images = await filesUploadHelper(req.files.image, undefined, 'news');
+                images = await filesUploadHelper(req.files.image, undefined, 'tags');
             } else {
                 req.files.file = req.files.image
-                let imageGallery = await fileUploadHelper(req.files, undefined, 'news');
+                let imageGallery = await fileUploadHelper(req.files, undefined, 'tags');
                 images.push(imageGallery);
             }
         }
@@ -147,16 +147,16 @@ const tagPut = async ( req = request, res = response) => {
     let data = {name, description, intro, date, post_type, slug};
     if(req.files){
         if(req.files.file) {
-            image = await fileUploadHelper(req.files, undefined, 'news');
+            image = await fileUploadHelper(req.files, undefined, 'tags');
             data.image = image
         }
         if(req.files.image){
             if(Array.isArray(req.files.image)) {
-                images = await filesUploadHelper(req.files.image, undefined, 'news');
+                images = await filesUploadHelper(req.files.image, undefined, 'tags');
                 await Tag.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             } else {
                 req.files.file = req.files.image
-                imageGallery = await fileUploadHelper(req.files, undefined, 'news');
+                imageGallery = await fileUploadHelper(req.files, undefined, 'tags');
                 images.push(imageGallery);
                 await Tag.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             }

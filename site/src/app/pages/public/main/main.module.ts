@@ -17,7 +17,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MainRoutingModule,
         PipesModule,
         ComponentsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        PipesModule
     ]
 })
 export class MainModule { }

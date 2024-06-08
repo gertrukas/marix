@@ -7,7 +7,10 @@ export interface Product {
     description: string;
     intro: string;
     date: Date;
-    client: string;
+    model: string;
+    key: string;
+    new: string;
+    size: string;
     categories: [Category];
     image: string;
     images: [];

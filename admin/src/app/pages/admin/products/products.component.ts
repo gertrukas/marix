@@ -1,69 +1,72 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Product } from "../../../interfaces/product";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Title } from "@angular/platform-browser";
+import { ProductsService } from "../../../services/admin/products.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { NgForm } from "@angular/forms";
 import { AuthService, UserType } from "../../../modules/auth";
-import { BlogsService } from "../../../services/admin/blogs.service";
-import { Blog } from "../../../interfaces/blog";
-import { TranslationService } from "../../../modules/i18n";
 import { UploadsService } from "../../../services/admin/uploads.service";
+import { CategoriesService } from "../../../services/admin/categories.service";
+import { Category } from "../../../interfaces/category";
 
 
 @Component({
-  selector: 'app-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   @ViewChild('btn') btn: ElementRef;
 
-  blogs: Blog[]=[];
-  blogDialog: boolean;
+  categories: Category[]=[];
+  products: Product[]=[];
+  productDialog: boolean;
   unit: boolean;
-  blog:{ date: Date; image: string; images: any[]; intro: string; name: string; description: string; active: boolean; _id: string; delete: boolean }=<Blog>{
+  product = {
     _id: '',
-    name:  '',
-    intro:  '',
+    name: '',
+    slug: '',
     description: '',
+    intro: '',
+    date: '',
+    model: '',
+    key: '',
+    new: '',
+    size: '',
+    categories: [],
     image: '',
     images: [],
-    date: new Date(),
+    active: false,
     delete: false,
-    active: true,
   };
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean;
   submitted: boolean;
-  selectedBlogs: Blog[];
-  files: File[] = [];
+  selectedProducts: Product[];
+  roles:any[]=[];
   statuses: any[];
-  types:any[]=[];
-  type={};
+  types: any[];
+  files: File[] = [];
   loading: boolean = true;
   image:any;
   imageInit:any;
   thumbnail:any;
   create:boolean=false;
-  viewPassword:boolean=false;
-  viewPass:boolean=false;
   pError:boolean=false;
+  role={};
   private unsubscribe: Subscription[] = [];
   signedUser$: Observable<UserType>;
 
 
   constructor(private titleService: Title,
-              public translation: TranslationService,
-              private uploads: UploadsService,
               private cdr: ChangeDetectorRef,
-              private service: BlogsService,
+              private serviceCategories: CategoriesService,
+              private uploads: UploadsService,
+              private service: ProductsService,
               private auth: AuthService) {
-    this.types = [
-                  {name: 'Post', code: 'post'},
-                  {name: 'Categoria', code: 'category'},
-                ]
-    this.titleService.setTitle("Comunicados");
+    this.titleService.setTitle("Categorias");
     const loadingSubscr = this.isLoading$
         .asObservable()
         .subscribe((res) => (this.isLoading = res));
@@ -71,7 +74,12 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.statuses = [
+      {label: 'Activo', value: true},
+      {label: 'In Activo', value: false},
+    ];
     this.getData();
+    this.getDataCategories();
     this.signedUser$ = this.auth.currentUserSubject.asObservable();
   }
 
@@ -84,14 +92,26 @@ export class NewsComponent implements OnInit {
   }
 
   getData(){
-    this.service.getBlogs().subscribe(response => {
-      console.log(response);
-      this.blogs = response.blogs;
+    this.service.getProducts().subscribe(response => {
+      this.products = response.products;
       this.loading = false;
-      this.statuses = [
-        {label: 'Activo', value: true},
-        {label: 'In Activo', value: false},
-      ];
+      this.cdr.detectChanges();
+    }, error => {
+      console.log(error);
+      this.isLoading$.next(false);
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: error.error.msg,
+        timer: 2000
+      });
+      this.cdr.detectChanges();
+    });
+  }
+  getDataCategories(){
+    this.serviceCategories.getCategories().subscribe(response => {
+      this.categories = response.categories;
+      this.loading = false;
       this.cdr.detectChanges();
     }, error => {
       console.log(error);
@@ -107,41 +127,45 @@ export class NewsComponent implements OnInit {
   }
 
 
+
   replaceImage(image: any){
     image.onerror = '';
-    image.src = 'assets/media/misc/image.png'
+    image.src = 'assets/images/missing.png'
   }
 
   created() {
-    this.blog = {
+    this.product = {
       _id: '',
       name: '',
-      intro: '',
+      slug: '',
       description: '',
+      intro: '',
+      date: '',
+      model: '',
+      key: '',
+      new: '',
+      size: '',
+      categories: [],
       image: '',
       images: [],
-      date: new Date(),
+      active: false,
       delete: false,
-      active: true,
     };
     this.create=true;
     this.submitted = false;
-    this.blogDialog = true;
+    this.productDialog = true;
   }
 
-  editBlog(blog: Blog) {
-    this.blog = {...blog};
-    this.blogDialog = true;
-    this.image = '';
-    this.imageInit = blog.image;
-    this.thumbnail = '';
-    this.blog.date = new Date(this.blog.date);
+  editProduct(product: Product) {
+    // @ts-ignore
+    this.product = {...product};
+    this.productDialog = true;
     this.create=false;
     this.pError=false;
   }
 
   hideDialog() {
-    this.blogDialog = false;
+    this.productDialog = false;
     this.submitted = false;
   }
 
@@ -153,102 +177,154 @@ export class NewsComponent implements OnInit {
     return true;
   }
 
-  saveBlog(form: NgForm){
+  saveProduct(form: NgForm){
+    console.log(form.value.description);
     if (this.create) {
-      this.store(form);
-      this.clearDropZone();
+      this.store(
+          form.value.name,
+          form.value.description,
+          form.value.intro,
+          form.value.model,
+          form.value.key,
+          form.value.new,
+          form.value.size,
+          form.value.categories
+          );
     }
     else {
-      this.update(form);
-      this.clearDropZone();
+      this.update(
+          form.value.name,
+          form.value.description,
+          form.value.intro,
+          form.value.model,
+          form.value.key,
+          form.value.new,
+          form.value.size,
+          form.value.categories
+      );
     }
-    this.blogDialog = false;
-    this.blog = {
+    this.productDialog = false;
+    this.product = {
       _id: '',
       name: '',
-      intro: '',
+      slug: '',
       description: '',
+      intro: '',
+      date: '',
+      model: '',
+      key: '',
+      new: '',
+      size: '',
+      categories: [],
       image: '',
       images: [],
-      date: new Date(),
+      active: false,
       delete: false,
-      active: true,
     };
     this.pError=false;
   }
 
-  store(form: NgForm) {
+  store(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
     this.isLoading$.next(true);
+    let _categories: any[] = [];
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('name', form.value.name);
-    params.append('description', form.value.description);
-    params.append('type_post', form.value.intro);
-    params.append('intro', form.value.intro);
-    params.append('date', form.value.date);
+    params.append('name', name);
+    params.append('intro', intro);
+    params.append('description', description);
+    params.append('key', key);
+    params.append('model', model);
+    params.append('new', news);
+    params.append('size', size);
+    // @ts-ignore
+    categories.forEach(category => {
+      _categories.push(category._id);
+    });
+    params.append('categories', _categories.toString());
     for(let p=0;this.files.length>p;p++){
       params.append('image', this.files[p]);
     }
     if (this.image != ''){
       params.append('file', this.image);
     }
-    this.service.postBlog(params).subscribe( response => {
-      console.log(response);
-      this.blogs.push(response.blog);
+    console.log(categories);
+    this.service.postProduct(params).subscribe( response => {
+      this.products.push(response.product);
       this.isLoading$.next(false);
       this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: 'La noticia se creó con exíto.',
+        text: 'El producto se creó con exíto.',
         timer: 2000
       });
     }, error => {
       console.log(error);
+      let msg;
+      if (error.error.errors > 0){
+        msg = error.error.errors[0].msg;
+      } else {
+        msg = error.error
+      }
       this.isLoading$.next(false);
       Swal.fire({
         icon: 'error',
         title: '¡Error!',
-        text: error.error.msg,
+        text: msg,
         timer: 2000
       });
       this.cdr.detectChanges();
     });
   }
 
-  update(form: NgForm) {
+  update(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
     this.isLoading$.next(true);
+    let _categories: any[] = [];
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('name', form.value.name);
-    params.append('description', form.value.description);
-    params.append('type_post', form.value.intro);
-    params.append('intro', form.value.intro);
+    params.append('name', name);
+    params.append('intro', intro);
+    params.append('description', description);
+    params.append('key', key);
+    params.append('model', model);
+    params.append('new', news);
+    params.append('size', size);
+    // @ts-ignore
+    categories.forEach(category => {
+      _categories.push(category._id);
+    });
+    params.append('categories', _categories.toString());
     for(let p=0;this.files.length>p;p++){
       params.append('image', this.files[p]);
     }
     if (this.image != ''){
       params.append('file', this.image);
     }
-    this.service.putBlog(this.blog._id, params).subscribe( response => {
-      const index = this.blogs.findIndex(item => item._id == response.blog._id);
-      this.blogs[index] = response.blog;
+    this.service.putProduct(this.product._id, params).subscribe( response => {
+      const index = this.products.findIndex(item => item._id == response.product._id);
+      this.products[index] = response.product;
       this.isLoading$.next(false);
       this.getData();
       this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: 'La noticia se actualizo con exíto.',
+        text: 'El producto se actualizo con exíto.',
         timer: 3000
       });
     }, error => {
       console.log(error);
+      let msg;
+      if (error.error.errors > 0){
+        msg = error.error.errors[0].msg;
+      } else {
+        msg = error.error
+      }
       this.isLoading$.next(false);
       Swal.fire({
         icon: 'error',
         title: '¡Error!',
-        text: error.error.msg,
+        text: msg,
         timer: 2000
       });
       this.cdr.detectChanges();
@@ -256,30 +332,30 @@ export class NewsComponent implements OnInit {
   }
 
 
-  active(blog: string, option: boolean){
+  active(product: string, option: boolean){
     this.isLoading$.next(true);
     let params = new FormData();
     params.append('Content-Type', 'multipart/form-data');
-    params.append('id', blog);
+    params.append('id', product);
     params.append('option', option.toString());
-    this.service.activeBlog(params).subscribe(response => {
+    this.service.activeProduct(params).subscribe(response => {
       let active = '';
-      const index = this.blogs.findIndex(item => item._id == response.blog._id);
-      this.blogs[index] = response.blog;
+      const index = this.products.findIndex(item => item._id == response.product._id);
+      this.products[index] = response.product;
       this.isLoading$.next(false);
       this.getData();
-      if (response.blog.active){
+      if (response.product.active){
         active = 'activo';
       } else {
         active = 'des activo';
       }
+      this.cdr.detectChanges();
       Swal.fire({
         icon: 'success',
         title: '¡Exito!',
-        text: `La noticia se ${active} con exíto.`,
+        text: `El producto se ${active} con exíto.`,
         timer: 2000
       });
-      this.cdr.detectChanges();
     }, error => {
       console.log(error);
       this.isLoading$.next(false);
@@ -293,10 +369,10 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  delete(blog: string){
+  delete(product: string){
     Swal.fire({
-      title: '¿Esta seguro que decea eliminar la noticia?',
-      text: '¡Esta apunto de eliminar la noticia!',
+      title: '¿Esta seguro que decea eliminar el producto?',
+      text: '¡Esta apunto de eliminar el producto!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si',
@@ -304,15 +380,15 @@ export class NewsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.isLoading$.next(true);
-        this.service.deleteBlog(blog).subscribe(response => {
-          const index = this.blogs.findIndex(item => item._id == response.blog._id);
-          this.blogs.splice(index, 1);
+        this.service.deleteProduct(product).subscribe(response => {
+          const index = this.products.findIndex(item => item._id == response.product._id);
+          this.products.splice(index, 1);
           this.isLoading$.next(false);
           this.cdr.detectChanges();
           Swal.fire({
             icon: 'success',
             title: '¡Eliminado!',
-            text: 'La noticia se elimino con exíto.',
+            text: 'El producto se elimino con exíto.',
             timer: 2000
           });
         }, error => {
@@ -329,12 +405,13 @@ export class NewsComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
             'Cancelado',
-            'No se elimino la noticia',
+            'No se elimino el producto',
             'error'
         )
       }
     })
   }
+
 
   onSelect(event: any) {
     this.files.push(...event.addedFiles);
@@ -370,7 +447,7 @@ export class NewsComponent implements OnInit {
 
   deleteImageGallery(img: string){
     this.isLoading$.next(true);
-    this.uploads.deleteUploadGallery('blogs', this.blog._id, img).subscribe(response => {
+    this.uploads.deleteUploadGallery('blogs', this.product._id, img).subscribe(response => {
       this.getData();
       this.isLoading$.next(false);
       Swal.fire({
@@ -398,7 +475,6 @@ export class NewsComponent implements OnInit {
       this.cdr.detectChanges();
     });
   }
-
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());

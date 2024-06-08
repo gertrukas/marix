@@ -73,7 +73,7 @@
                     <td >
                         <div class="d-flex align-items-center">
                             <div class="symbol me-5">
-                                <img [src]="blog._id | image: 'blogs'" (error)="replaceImage(image)"
+                                <img [src]="blog._id | image: 'blogs' : blog.image" (error)="replaceImage(image)"
                                      width="100px" class="cursor-pointer"
                                      [alt]="blog.name" (click)="editBlog(blog)"/>
                             </div>
@@ -193,7 +193,7 @@
                 <div class="field col-12 mt-5 pt-3">
                     <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
                     <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !blog.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
-                    <img [src]="blog._id | image: 'news'" [alt]="blog.image" width="150px" class="product-image cursor-pointer" *ngIf="blog.image && !thumbnail" (click)="file.click()">
+                    <img [src]="blog._id | image: 'blogs' : blog.image" [alt]="blog.image" width="150px" class="product-image cursor-pointer" *ngIf="blog.image && !thumbnail" (click)="file.click()">
                     <p-button type="button" icon="pi pi-image"
                               (click)="file.click()"
                               label="Seleccionar Imagen"

@@ -38,9 +38,12 @@ const routes: Routes = [
         path: 'servicios/catering-eventos-externos',
         loadChildren: () => import('./servicios/catering-eventos-externos/catering-eventos-externos/catering-eventos-externos.module').then(m => m.CateringEventosExternosModule)
       },
-
+      {
+        path: 'productos',
+        loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+      },
     ]
-  },
+  }
 
 
 

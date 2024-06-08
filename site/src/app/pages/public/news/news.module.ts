@@ -11,11 +11,12 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
   declarations: [
     NewsComponent
   ],
-  imports: [
-    CommonModule,
-    NewsRoutingModule,
-    ComponentsModule,
-    PipesModule
-  ]
+    imports: [
+        CommonModule,
+        NewsRoutingModule,
+        ComponentsModule,
+        PipesModule,
+        PipesModule
+    ]
 })
 export class NewsModule { }

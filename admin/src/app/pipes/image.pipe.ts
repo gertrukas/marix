@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {environment} from "../../environments/environment";
+import { environment } from "../../environments/environment";
 
 const URL = environment.apiUrl + '/uploads';
 
@@ -8,8 +8,8 @@ const URL = environment.apiUrl + '/uploads';
 })
 export class ImagePipe implements PipeTransform {
 
-  transform(id: string, collection:string): string {
-    return `${ URL }/${ collection }/${ id }?random=${Math.random()}`;
+  transform(id: string, collection: string, image: string): string {
+    return `${ URL }/${ collection }/${ id }/${image}`;
   }
 
 }
