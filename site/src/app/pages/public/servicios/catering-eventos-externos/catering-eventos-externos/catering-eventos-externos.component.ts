@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./catering-eventos-externos.component.sass']
 })
 export class CateringEventosExternosComponent {
-  secondaryItem: string = 'Servicios';
-  item: string  = 'Catering eventos externos';
+  secondaryItem: string = 'Catering eventos externos';
+  item: string  = 'Servicios';
   search: boolean  = false;
   titulo: string = this.item;
 }
