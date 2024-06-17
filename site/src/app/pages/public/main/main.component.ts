@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/interfaces/blog';
 import { SearchService } from 'src/app/services/search.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
