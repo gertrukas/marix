@@ -27,10 +27,6 @@ const routes: Routes = [
         loadChildren: () => import('./somos/somos/somos.module').then(m => m.SomosModule)
       },
       {
-        path: 'servicios/comedores-industriales',
-        loadChildren: () => import('./servicios/comedores-industriales/comedores-industriales/comedores-industriales.module').then(m => m.ComedoresIndustrialesModule)
-      },
-      {
         path: 'servicios/box-lunch',
         loadChildren: () => import('./servicios/box-lunch/box-lunch/box-lunch.module').then(m => m.BoxLunchModule)
       },
@@ -42,8 +38,20 @@ const routes: Routes = [
         path: 'productos',
         loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
       },
+      {
+        path: 'servicios/comedor-empresarial',
+        loadChildren: () => import('./servicios/comedor-empresarial/comedor-empresarial.module').then(m => m.ComedorEmpresarialModule)
+      },
+      {
+        path: 'servicios/eventos-especiales',
+        loadChildren: () => import('./servicios/eventos-especiales/eventos-especiales.module').then(m => m.EventosEspecialesModule)
+      },
+
     ]
-  }
+  },
+
+
+
 
 
 
