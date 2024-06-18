@@ -65,8 +65,8 @@ const blogsGet = async (req, res = response) => {
 
     const [ totalBlogs, blogs, blogsAll] = await Promise.all([
         Blog.countDocuments({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false})
+        Blog.find({delete:false, parent:{$exists: false}}).sort({date: -1}),
+        Blog.find({delete:false}).sort({date: -1})
     ]);
 
     res.json({

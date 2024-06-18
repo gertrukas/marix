@@ -24,7 +24,7 @@ const productsGetPublic = async (req, res = response) => {
         products = await Product.find({active:true})
              .limit(Number(limit))
              .skip(Number(from))
-             .sort({date: -1}).populate('categories');
+             .sort({name : 1}).populate('categories');
     }
 
     res.json({
@@ -54,8 +54,8 @@ const productsGet = async (req, res = response) => {
 
     const [ totalproducts, products, productsAll] = await Promise.all([
         Product.countDocuments({delete:false, parent:{$exists: false}}),
-        Product.find({delete:false, parent:{$exists: false}}).populate('categories'),
-        Product.find({delete:false}).populate('categories')
+        Product.find({delete:false, parent:{$exists: false}}).sort({name : 1}).populate('categories'),
+        Product.find({delete:false}).sort({name : 1}).populate('categories')
     ]);
 
     res.json({
