@@ -76,6 +76,7 @@ const categoryPost = async (req = request, res = response) => {
             image = await fileUploadHelper(req.files, undefined, 'categories');
         }
     }
+    console.log(image);
     let data;
     data = {name, description, slug, date_create:date_create};
     data.image = image;
