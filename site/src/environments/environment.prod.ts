@@ -3,6 +3,7 @@ export const environment = {
   appVersion: 'v1.0.1',
   USERDATA_KEY: 'authexcess2024',
   apiUrl: 'https://backend.xsbeta.com/api',
+  backUrl: 'https://backend.xsbeta.com',
   adminUrl: 'https://admin.xsbeta.com/',
   pageUrl: 'https://xsbeta.com/',
 };

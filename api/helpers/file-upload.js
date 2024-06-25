@@ -13,13 +13,13 @@ const fileUpload = (files, validExtensions = ['png', 'jpg', 'jpeg', 'gif'], dire
         }
 
         const tempName = cutName[0] + '.' + extension;
-        const uploadPath = path.join(__dirname , '../assets/', directory, tempName);
+        const uploadPath = path.join(__dirname , '../public/assets/', directory, tempName);
 
         file.mv(uploadPath, (err) => {
             if (err) {
                 reject(err);
             }
-            resolve(uploadPath);
+            resolve(tempName);
         });
     });
 }
@@ -39,7 +39,7 @@ const filesUpload = (files, validExtensions = ['png', 'jpg', 'jpeg', 'gif'], dir
             }
 
             const tempName = cutName[0] + '.' + extension;
-            const uploadPath = path.join(__dirname , '../uploads/', directory, tempName);
+            const uploadPath = path.join(__dirname , '../public/assets/', directory, tempName);
             image.mv(uploadPath, (err) => {
                 if (err) {
                     error = err;

@@ -9,6 +9,7 @@ export const environment = {
   NAME_APP: 'Matrix',
   isMockEnabled: false,
   apiUrl: 'https://backend.xsbeta.com/api',
+  backUrl : 'https://backend.xsbeta.com',
   adminUrl: 'https://admin.xsbeta.com/',
   pageUrl: 'https://xsbeta.com/',
   appThemeName: 'Metronic',

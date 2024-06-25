@@ -7,6 +7,7 @@ export const environment = {
   appVersion: 'v1.0.1',
   USERDATA_KEY: 'authexcess2024',
   apiUrl: 'http://localhost:8080/api',
+  backUrl: 'http://localhost:8080',
   adminUrl: 'http://localhost:4200',
   pageUrl: 'http://localhost:4200',
 };
