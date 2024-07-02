@@ -27,14 +27,6 @@ const routes: Routes = [
         loadChildren: () => import('./somos/somos/somos.module').then(m => m.SomosModule)
       },
       {
-        path: 'servicios/box-lunch',
-        loadChildren: () => import('./servicios/box-lunch/box-lunch/box-lunch.module').then(m => m.BoxLunchModule)
-      },
-      {
-        path: 'servicios/catering-eventos-externos',
-        loadChildren: () => import('./servicios/catering-eventos-externos/catering-eventos-externos/catering-eventos-externos.module').then(m => m.CateringEventosExternosModule)
-      },
-      {
         path: 'productos',
         loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
       },
@@ -46,9 +38,38 @@ const routes: Routes = [
         path: 'servicios/eventos-especiales',
         loadChildren: () => import('./servicios/eventos-especiales/eventos-especiales.module').then(m => m.EventosEspecialesModule)
       },
+      {
+        path: 'servicios/cafeterias',
+        loadChildren: () => import('./servicios/cafeterias/cafeterias.module').then(m => m.CafeteriasModule)
+      },
+      {
+        path: 'servicios/catering',
+        loadChildren: () => import('./servicios/catering/catering.module').then(m => m.CateringModule)
+      },
+      {
+        path: 'servicios/desarrollo-de-proyectos',
+        loadChildren: () => import('./servicios/desarrollo-de-proyectos/desarrollo-de-proyectos.module').then(m => m.DesarrolloDeProyectosModule)
+      },
+      {
+        path: 'beneficios/alianzas-estrategicas',
+        loadChildren: () => import('./alianzas-estrategicas/alianzas-estrategicas.module').then(m => m.AlianzasEstrategicasModule)
+      },
+      {
+        path: 'beneficios/certificaciones',
+        loadChildren: () => import('./certificaciones/certificaciones.module').then(m => m.CertificacionesModule)
+      },
+      {
+        path: 'bolsa-de-trabajo',
+        loadChildren: () => import('./bolsa-de-trabajo/bolsa-de-trabajo.module').then(m => m.BolsaDeTrabajoModule)
+      },
+
 
     ]
   },
+
+
+
+
 
 
 
