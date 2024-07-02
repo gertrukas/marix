@@ -22,9 +22,9 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" [routerLink]="['/servicios/comedor-empresarial']">Comedor empresarial</a></li>
             <li><a class="dropdown-item" [routerLink]="['/servicios/eventos-especiales']">Eventos especiales</a></li>
-            <li><a class="dropdown-item" href="#">Cafeterias</a></li>
-            <li><a class="dropdown-item" href="#">Catering</a></li>
-            <li><a class="dropdown-item" href="#">Desarrollo de proyectos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/servicios/cafeterias']">Cafeterias</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/servicios/catering']">Catering</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/servicios/desarrollo-de-proyectos']">Desarrollo de proyectos</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -32,12 +32,12 @@
             Beneficios
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Alianzas estratégicas</a></li>
-            <li><a class="dropdown-item" href="#">Certificaciones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/beneficios/alianzas-estrategicas']">Alianzas estratégicas</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/beneficios/certificaciones']">Certificaciones</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Bolsa de trabajo</a>
+          <a class="nav-link" [routerLink]="['/bolsa-de-trabajo']">Bolsa de trabajo</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Comunicados</a>

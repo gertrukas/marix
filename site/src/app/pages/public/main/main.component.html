@@ -60,7 +60,7 @@
 
       <div class="__card p-4">
         <h4 class="-titulo text-center">Eventos especiales</h4>
-        <img src="/assets/images/servicios/eventos-especiales.jpg" class="img-fluid" alt="ejemplo">
+        <img src="/assets/images/servicios/eventos-especiales.webp" class="img-fluid" alt="ejemplo">
 
         <p>Estamos contigo en cada momento.
           <br>¡Nosotros nos hacemos cargo de todos tus eventos!
@@ -110,8 +110,13 @@
 
               <div class="col-md-6">
                 <a [routerLink]="['/blog', blog.slug]">
+<<<<<<< Updated upstream
                   &lt;!&ndash;<img [src]="blog._id | image: 'news' : blog.image"  [alt]="blog.name" class="img-fluid">&ndash;&gt;
                   <img src="/assets/images/portada.jpg" class="img-fluid" alt="ejemplo">
+=======
+                  <img [src]="blog._id | image: 'blogs' : blog.image"  [alt]="blog.name" class="img-fluid">
+
+>>>>>>> Stashed changes
                 </a>
               </div>
 

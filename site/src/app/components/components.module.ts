@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import {RouterLink} from "@angular/router";
 import { AlianzasComponent } from './shared/alianzas/alianzas.component';
 
+import { LasCertificacionesComponent } from './shared/las-certificaciones/las-certificaciones.component';
+
 
 
 
@@ -25,6 +27,7 @@ import { AlianzasComponent } from './shared/alianzas/alianzas.component';
     SearchComponent,
     ServiciosBeneficiosComponent,
     AlianzasComponent,
+    LasCertificacionesComponent,
 
   ],
   exports: [
@@ -34,6 +37,7 @@ import { AlianzasComponent } from './shared/alianzas/alianzas.component';
     SearchComponent,
     ServiciosBeneficiosComponent,
     AlianzasComponent,
+    LasCertificacionesComponent,
   ],
     imports: [
         CommonModule,
