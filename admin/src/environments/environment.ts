@@ -9,6 +9,7 @@ export const environment = {
   NAME_APP: 'Matrix',
   isMockEnabled: false,
   apiUrl: 'http://localhost:8080/api',
+  backUrl: 'http://localhost:8080',
   adminUrl: 'http://localhost:4200/',
   pageUrl: 'http://localhost:4200/',
   appThemeName: 'Metronic',

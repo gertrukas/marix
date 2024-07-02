@@ -65,8 +65,8 @@ const blogsGet = async (req, res = response) => {
 
     const [ totalBlogs, blogs, blogsAll] = await Promise.all([
         Blog.countDocuments({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false, parent:{$exists: false}}),
-        Blog.find({delete:false})
+        Blog.find({delete:false, parent:{$exists: false}}).sort({date: -1}),
+        Blog.find({delete:false}).sort({date: -1})
     ]);
 
     res.json({
@@ -84,14 +84,14 @@ const blogPost = async (req = request, res = response) => {
     let images = [];
     if(req.files){
         if(req.files.file){
-            image = await fileUploadHelper(req.files, undefined, 'news');
+            image = await fileUploadHelper(req.files, undefined, 'blogs');
         }
         if(req.files.image){
             if(Array.isArray(req.files.image)) {
-                images = await filesUploadHelper(req.files.image, undefined, 'news');
+                images = await filesUploadHelper(req.files.image, undefined, 'blogs');
             } else {
                 req.files.file = req.files.image
-                let imageGallery = await fileUploadHelper(req.files, undefined, 'news');
+                let imageGallery = await fileUploadHelper(req.files, undefined, 'blogs');
                 images.push(imageGallery);
             }
         }
@@ -147,16 +147,16 @@ const blogPut = async ( req = request, res = response) => {
     let data = {name, description, intro, date, post_type, slug};
     if(req.files){
         if(req.files.file) {
-            image = await fileUploadHelper(req.files, undefined, 'news');
+            image = await fileUploadHelper(req.files, undefined, 'blogs');
             data.image = image
         }
         if(req.files.image){
             if(Array.isArray(req.files.image)) {
-                images = await filesUploadHelper(req.files.image, undefined, 'news');
+                images = await filesUploadHelper(req.files.image, undefined, 'blogs');
                 await Blog.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             } else {
                 req.files.file = req.files.image
-                imageGallery = await fileUploadHelper(req.files, undefined, 'news');
+                imageGallery = await fileUploadHelper(req.files, undefined, 'blogs');
                 images.push(imageGallery);
                 await Blog.findByIdAndUpdate(id, {$push: {images: {$each: images}}});
             }
