@@ -24,4 +24,5 @@ registerLocaleData(localePy, 'es');
   providers: [{provide: LOCALE_ID, useValue: 'es-Mx' } ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
