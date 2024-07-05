@@ -54,7 +54,7 @@
         <img src="/assets/images/servicios/comedores-industriales.jpg" class="img-fluid" alt="ejemplo">
 
         <p>Creamos ambiente de trabajo positivo, transformando espacios. Fomentamos salud y bienestar a las personas.</p>
-        <a class="-btn-ver-mas float-end" href="#" role="button">Leer mas</a>
+        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/comedor-empresarial']" role="button">Leer mas</a>
       </div>
 
 
@@ -65,7 +65,7 @@
         <p>Estamos contigo en cada momento.
           <br>¡Nosotros nos hacemos cargo de todos tus eventos!
         </p>
-        <a class="-btn-ver-mas float-end" href="#" role="button">Leer mas</a>
+        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/eventos-especiales']" role="button">Leer mas</a>
       </div>
 
       <div class="__card p-4">
@@ -73,7 +73,7 @@
         <img src="/assets/images/servicios/cafeterias.jpg" class="img-fluid" alt="ejemplo">
 
         <p>Contribuimos al bienestar de los colaboradores dentro de su espacio laboral, creando un ambiente agradable.</p>
-        <a class="-btn-ver-mas float-end" href="#" role="button">Leer mas</a>
+        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/cafeterias']" role="button">Leer mas</a>
       </div>
 
       <div class="__card p-4">
@@ -83,7 +83,7 @@
         <p>No tienes instalaciones
           ¡Nosotros te llevamos!
           Contamos con estructura, instalaciones y  unidades equipadas idóneas para la gestión de servicio de alimentación </p>
-        <a class="-btn-ver-mas float-end" href="#" role="button">Leer mas</a>
+        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/catering']" role="button">Leer mas</a>
       </div>
       <div class="__card p-4">
         <h4 class="-titulo text-center">Desarrollo de proyectos</h4>
@@ -91,7 +91,7 @@
 
         <p>Soluciones integrales que se adaptan a concepto, posibilidad y alcance.
         </p>
-        <a class="-btn-ver-mas float-end" href="#" role="button">Leer mas</a>
+        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
       </div>
     </div>
   </section>
@@ -140,7 +140,12 @@
         </div>
 
     <div class="-pub-right text-end end">
-       btn para ir al top
+      <button onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="-btn-top">
+        <i class="pi pi-arrow-up" style="font-size: 1.5rem"></i>
+        <br>
+        ir al principio
+      </button>
+
     </div>
 
   </section>
