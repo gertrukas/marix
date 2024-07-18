@@ -14,11 +14,12 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   // public methods
-  contact(name: string, email: string, message: string): Observable<any> {
+  contact(name: string, telephone: string, email: string, message: string): Observable<any> {
 
     return this.http.post<any>(`${API_URL}/emails/send/contact`, {
       name,
       email,
+      telephone,
       message,
     });
   }

@@ -18,9 +18,9 @@ export class GeneralService {
   }
 
 
-  contact(name: string, email: string, message: string): Observable<any> {
+  contact(name: string, telephone: string, email: string, message: string): Observable<any> {
     this.isLoadingSubject.next(true);
-    return this.serviceContact.contact(name, email, message).pipe(
+    return this.serviceContact.contact(name, telephone, email, message).pipe(
       map( response => {
         return response;
       }),
