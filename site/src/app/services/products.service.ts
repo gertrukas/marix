@@ -27,4 +27,7 @@ export class ProductsService {
       return this.http.get<any>(`${this.urlpublic}/?${pages}`);
     }
   }
+
+
+
 }

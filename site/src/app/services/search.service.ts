@@ -39,4 +39,8 @@ export class SearchService {
       return this.http.get<any>(`${this.urlSearch}`);
     }
   }
+
+  getBlog(slug: string){
+    return this.http.get<any>(`${this.urlSearch}/${slug}`);
+  }
 }
