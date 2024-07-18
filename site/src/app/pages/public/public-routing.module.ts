@@ -65,10 +65,15 @@ const routes: Routes = [
         path: 'bolsa-de-trabajo',
         loadChildren: () => import('./bolsa-de-trabajo/bolsa-de-trabajo.module').then(m => m.BolsaDeTrabajoModule),
       },
+      {
+        path: 'contacto',
+        loadChildren: () => import('./contacto/contacto.module').then(m => m.ContactoModule)
+      },
 
 
     ]
   },
+
 
 
 
