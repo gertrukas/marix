@@ -13,49 +13,216 @@
 
     <div class="card p-3 -err" style="width: 70%;">
 
-      <div class="card-body">
-        <form action="" class="">
+      <div class="card-body" *ngIf="!sendCorrect">
+        <form class=""
+              [formGroup]="contactForm"
+              (ngSubmit)="submit()">
 
           <div class="mb-2 -err">
               <label class="form-label">
                 Nombre:
               </label>
-              <input type="text" class="form-control" placeholder="Por favor ingrese su nombre" >
-              <i class="pi pi-check" style="color: green"></i> o mensaje de error
+              <input type="text" class="form-control" placeholder="Por favor ingrese su nombre"
+                     name="name"
+                     formControlName="name"
+                     autocomplete="off"
+                     [ngClass]="{
+                      'is-invalid': contactForm.controls['name'].invalid,
+                      'is-valid': contactForm.controls['name'].valid
+                   }">
+            <i class="fal fa-user"></i>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'El nombre es requerido',
+                control: contactForm.controls['name']
+              }">
+            </ng-container>
+
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minLength',
+                message: 'El nombre debe tener como minimo 3',
+                control: contactForm.controls['name']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'El nombre debe tener como maximo 20',
+                control: contactForm.controls['name']
+              }">
+            </ng-container>
           </div>
 
           <div class="mb-2 -err">
             <label class="form-label">
               Correo:
             </label>
-            <input type="text" class="form-control" placeholder="Por favor ingrese su correo" >
-            <i class="pi pi-check" style="color: green"></i> o mensaje de error
+            <input class="form-control" placeholder="Por favor ingrese su correo"
+                   type="email"
+                   name="email"
+                   formControlName="email"
+                   autocomplete="off"
+                   [ngClass]="{
+                      'is-invalid': contactForm.controls['email'].invalid,
+                      'is-valid': contactForm.controls['email'].valid
+                   }">
+            <i class="fal fa-envelope"></i>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'pag El correo es obligatorio',
+                control: contactForm.controls['email']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'email',
+                message: ' El correo no tiene el formato correcto',
+                control: contactForm.controls['email']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minLength',
+                message: 'page El correo debe contener minimo 320 caracteres',
+                control: contactForm.controls['email']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'page El correo debe contener minimo 10 caracteres',
+                control: contactForm.controls['email']
+              }">
+            </ng-container>
           </div>
 
           <div class="mb-2 -err">
             <label class="form-label">
               Teléfono:
             </label>
-            <input type="text" class="form-control" placeholder="Por favor ingrese su teléfono" >
-            <i class="pi pi-check" style="color: green"></i> o mensaje de error
+            <input class="form-control" placeholder="Por favor ingrese su teléfono"
+                   type="tel"
+                   name="phone"
+                   formControlName="phone"
+                   autocomplete="off"
+                   [ngClass]="{
+                      'is-invalid': contactForm.controls['phone'].invalid,
+                      'is-valid': contactForm.controls['phone'].valid
+                   }">
+            <i class="fal fa-user"></i>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'El telefono es requerido',
+                control: contactForm.controls['phone']
+              }">
+            </ng-container>
+
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minLength',
+                message: 'El telefono debe tener como minimo 10',
+                control: contactForm.controls['phone']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'El telefono debe tener como maximo 10',
+                control: contactForm.controls['phone']
+              }">
+            </ng-container>
           </div>
 
           <div class="mb-2 -err">
             <label class="form-label">
               Comentarios:
             </label>
-            <input type="textarea" class="form-control" placeholder="Por favor ingrese sus comentarios" >
-            <i class="pi pi-check" style="color: green"></i> o mensaje de error
+            <textarea placeholder="Mensaje" class="form-control"
+                      name="message"
+                      formControlName="message"
+                      autocomplete="off"
+                      [ngClass]="{
+                      'is-invalid': contactForm.controls['message'].invalid,
+                      'is-valid': contactForm.controls['message'].valid
+                   }"></textarea>
+            <i class="fal fa-comments"></i>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'El mensaje es obligatorio',
+                control: contactForm.controls['message']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minLength',
+                message: 'pEl mensaje debe contener minimo 20 caracteres',
+                control: contactForm.controls['message']
+              }">
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'pEl mensaje debe contener maximo 500 caracteres',
+                control: contactForm.controls['message']
+              }">
+            </ng-container>
           </div>
 
-          <button class="btn btn-primary mt-2">Enviar</button>
+          <button type="submit" class="primary-btn"
+                  [disabled]="contactForm.invalid">
+            <ng-container *ngIf="isLoading">
+                <span class="indicator-progress" [style.display]="'block'">
+                  Esperé por favor...
+                  <span
+                    class="spinner-border spinner-border-sm align-middle ms-2"
+                  ></span>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="!isLoading">
+              <span class="indicator-label">Enviar</span>
+            </ng-container>
+          </button>
         </form>
+        <ng-template
+          #formError
+          let-control="control"
+          let-message="message"
+          let-validation="validation">
+          <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+            <div class="fv-plugins-message-container">
+              <span role="alert">
+                {{ message }}
+              </span>
+            </div>
+          </ng-container>
+        </ng-template>
 
 
       </div>
-
-      <p> Su mensaje ah sido enviado</p>
-
+      <div *ngIf="sendCorrect">
+        <p> Su mensaje ah sido enviado</p>
+      </div>
+      <div *ngIf="sendError">
+        <p> Se encontro un error al enviar el mensaje, intente mas tarde </p>
+      </div>
 
     </div>
 

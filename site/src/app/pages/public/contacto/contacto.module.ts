@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {AsyncPipe, CommonModule, NgIf} from '@angular/common';
 
 import { ContactoRoutingModule } from './contacto-routing.module';
 import { ContactoComponent } from './contacto.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +12,13 @@ import { ContactoComponent } from './contacto.component';
   ],
   imports: [
     CommonModule,
-    ContactoRoutingModule
+    ContactoRoutingModule,
+    ReactiveFormsModule,
+    NgIf,
+    FormsModule,
+    AsyncPipe,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ContactoModule { }

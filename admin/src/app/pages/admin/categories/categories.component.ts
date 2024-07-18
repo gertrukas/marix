@@ -75,7 +75,6 @@ export class CategoriesComponent implements OnInit {
   getData(){
     this.service.getCategories().subscribe(response => {
       this.categories = response.categories;
-      console.log(this.categories);
       this.loading = false;
       this.cdr.detectChanges();
     }, error => {
