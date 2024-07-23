@@ -44,7 +44,7 @@ const productsChildrenGet = async ( req = request, res = response) => {
 const productGetPublic = async ( req = request, res = response) => {
     const slug = req.params.slug;
 
-    const product = await Product.findOne({slug}, {author:0, active:0, delete:0,  intro:0, images:0, post_type:0});
+    const product = await Product.findOne({slug}, {author:0, active:0, delete:0,  intro:0, images:0, post_type:0}).populate('categories');
     res.status(200).json({
         product
     });
@@ -70,6 +70,7 @@ const productPost = async (req = request, res = response) => {
     let { name, description, intro, model, key, news, size, categories } = req.body;
     let image;
     let slug = urlSlug(name);
+    let images = [];
     const date = new Date(Date.now());
     _categories = categories.split(',');
     if(req.files){
@@ -135,6 +136,7 @@ const productPut = async ( req = request, res = response) => {
     const id = req.params.id;
     let { name, description, intro, model, key, news, size, categories  } = req.body;
     let image;
+    let images = [];
     let slug = urlSlug(name);
     const _categories = categories.split(',');
     let product;

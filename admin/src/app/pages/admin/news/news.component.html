@@ -213,7 +213,7 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let image of blog.images; let i=index">
-                                <img [src]="image | imageGallery: blog._id: 'news'" class="w-100" [alt]="image">
+                                <img [src]="image | imageGallery: blog._id: 'blogs'" class="w-100" [alt]="image">
                                 <button type="button"
                                         title="Eliminar"
                                         (click)="deleteImageGallery(image)"

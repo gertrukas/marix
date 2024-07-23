@@ -142,7 +142,7 @@ const blogPut = async ( req = request, res = response) => {
     let { name, description, intro, date, post_type } = req.body;
     let image;
     let slug = urlSlug(name);
-    let images;
+    let images = [];
     let blog;
     let data = {name, description, intro, date, post_type, slug};
     if(req.files){

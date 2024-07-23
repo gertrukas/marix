@@ -9,7 +9,7 @@ const URL = environment.backUrl + '/assets';
 export class ImageGalleryPipe implements PipeTransform {
 
   transform(img: string, id: string, collection:string): string {
-    return `${ URL }/${ collection }/${ img }?random=${Math.random()}`;
+    return `${ URL }/${ collection }/${ img }`;
   }
 
 }

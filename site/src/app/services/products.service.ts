@@ -28,6 +28,10 @@ export class ProductsService {
     }
   }
 
+  getProduct(slug: string){
+    return this.http.get<any>(`${this.urlpublic}/${slug}`);
+  }
+
 
 
 }

@@ -111,7 +111,8 @@
               Teléfono:
             </label>
             <input class="form-control" placeholder="Por favor ingrese su teléfono"
-                   type="tel"
+                   type="number"
+                   pattern="[0-9]{10}"
                    name="phone"
                    formControlName="phone"
                    autocomplete="off"
@@ -172,7 +173,7 @@
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
                 validation: 'minLength',
-                message: 'pEl mensaje debe contener minimo 20 caracteres',
+                message: 'El mensaje debe contener minimo 20 caracteres',
                 control: contactForm.controls['message']
               }">
             </ng-container>
@@ -180,7 +181,7 @@
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
                 validation: 'maxLength',
-                message: 'pEl mensaje debe contener maximo 500 caracteres',
+                message: 'El mensaje debe contener maximo 500 caracteres',
                 control: contactForm.controls['message']
               }">
             </ng-container>
