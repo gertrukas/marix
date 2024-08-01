@@ -31,23 +31,35 @@
             </ng-template>
             <ng-template pTemplate="header" class="bg-primary">
                 <tr>
-                    <th style="width: 10rem">Imagen</th>
+                    <th style="">Imagen</th>
+
                     <th pSortableColumn="name">
-                        <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center ">
                             Nombre
                             <p-sortIcon field="name"></p-sortIcon>
                             <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
                     </th>
+
                     <th pSortableColumn="description">
                         <div class="flex justify-content-between align-items-center">
-                            Descripcion
+                            Descripción
                             <p-sortIcon field="description"></p-sortIcon>
                             <p-columnFilter type="text" field="description" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
                     </th>
-                    <th  style="width: 12rem" pSortableColumn="active">
+
+                    <th pSortableColumn="date">
                         <div class="flex justify-content-between align-items-center">
+                            Fecha
+                            <p-sortIcon field="date"></p-sortIcon>
+                            <p-columnFilter type="text" field="date" display="menu" class="ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+
+
+                    <th  style="10rem" pSortableColumn="active">
+                        <div class="flex justify-content-between align-items-center -err">
                             Status
                             <p-sortIcon field="active"></p-sortIcon>
                             <p-columnFilter field="active" matchMode="equals" [showMenu]="false">
@@ -61,20 +73,23 @@
                             </p-columnFilter>
                         </div>
                     </th>
-                    <th style="width: 12rem">
+
+                    <th style="width: 11rem">
                         <div class="flex justify-content-end align-items-center">
-                            <span class="float-end">Acciones</span>
+                            <span class="float-left">Acciones</span>
                         </div>
                     </th>
                 </tr>
             </ng-template>
+
+
             <ng-template pTemplate="body" let-blog let-ri="rowIndex">
                 <tr class="p-selectable-row">
-                    <td >
+                    <td>
                         <div class="d-flex align-items-center">
                             <div class="symbol me-5">
                                 <img [src]="blog._id | image: 'blogs' : blog.image" (error)="replaceImage(image)"
-                                     width="100px" class="cursor-pointer"
+                                     width="200px" class="cursor-pointer"
                                      [alt]="blog.name" (click)="editBlog(blog)"/>
                             </div>
                         </div>
@@ -84,9 +99,16 @@
                         {{blog.name}}
                     </td>
                     <td (click)="editBlog(blog)">
-                        <span class="p-column-title">description</span>
+                        <span class="p-column-title">descripción</span>
                         <span [innerHTML]="blog.description | truncate: 90"></span>
                     </td>
+
+                    <td (click)="editBlog(blog)">
+                        <span class="p-column-title">date</span>
+                        {{ blog.date | date: 'dd/MMM/yyy'}}
+                    </td>
+
+
                     <td>
                         <span class="p-column-title">status</span>
                         <span class="badge badge-light-success fs-7 fw-bold" *ngIf="blog.active">Activo</span>
@@ -146,7 +168,7 @@
 </div>
 
 <p-dialog [header]="create ? 'Crear Noticia':'Editar Noticia ' + blog.name"
-          [(visible)]="blogDialog" [modal]="true" [breakpoints]="{'960px': '75vw', '540px': '100vw'}" [style]="{width: '50vw'}"
+          [(visible)]="blogDialog" [modal]="true" [breakpoints]="{'960px': '75vw', '540px': '100vw'}" [style]="{width: '85vw'}"
           [draggable]="false" [resizable]="false">
     <ng-template pTemplate="body">
         <form (ngSubmit)="saveBlog(formCreate)"  #formCreate="ngForm">
@@ -164,7 +186,7 @@
                         Intro
                     </label>
                     <span class="p-float-label">
-                      <p-editor [(ngModel)]="blog.intro" [style]="{'height':'320px'}" id="intro" name="intro"></p-editor>
+                      <p-editor [(ngModel)]="blog.intro" [style]="{'height':'100px'}" id="intro" name="intro"></p-editor>
                   </span>
                 </div>
                 <div class="field col-12 mt-5 pt-3">
@@ -181,6 +203,7 @@
                       <label for="type">Tipo</label>
                     </span>
                   </div>
+
                 <div class="field col-12 mt-5 pt-3">
                     <span class="p-float-label">
                           <p-calendar id="date" name="date" [(ngModel)]="blog.date"  [showWeek]="true"></p-calendar>
@@ -190,6 +213,7 @@
                     </span>
 <!--                    <p-calendar [(ngModel)]="blog.date" name="date" [inline]="true" [showWeek]="true"></p-calendar>-->
                 </div>
+
                 <div class="field col-12 mt-5 pt-3">
                     <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
                     <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !blog.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
@@ -209,37 +233,7 @@
                         Imágenes (Formato png, jpg o jpeg de tamaño 1,200 x 700 a 72 dpi)<br>
                     </div>
                 </div>
-                <div class="field col-12 mt-5 pt-3">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let image of blog.images; let i=index">
-                                <img [src]="image | imageGallery: blog._id: 'blogs'" class="w-100" [alt]="image">
-                                <button type="button"
-                                        title="Eliminar"
-                                        (click)="deleteImageGallery(image)"
-                                        class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm cursor-pointer"
-                                        [disabled]="isLoading">
-                                    <ng-container *ngIf="!isLoading">
-                                        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'" class="svg-icon svg-icon-3"></span>
-                                    </ng-container>
-                                    <ng-container *ngIf="isLoading">
-                                        <span class="indicator-progress" [style.display]="'block'">
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                        </span>
-                                    </ng-container>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="field col-12 mt-5 pt-3">
-                    <ngx-dropzone (change)="onSelect($event)">
-                        <ngx-dropzone-label>¡Suélte, sus imágenes!</ngx-dropzone-label>
-                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                        </ngx-dropzone-image-preview>
-                    </ngx-dropzone>
-                </div>
+
             </div>
             <div class="d-flex justify-content-end mt-5">
                 <p-button icon="pi pi-ban" (click)="blogDialog=false" label="Cancelar" styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
