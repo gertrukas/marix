@@ -3,12 +3,18 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {BehaviorSubject, first, Observable, Subscription} from "rxjs";
 import { GeneralService } from "../../../services/general.service";
 
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.sass']
 })
 export class ContactoComponent implements OnInit, OnDestroy{
+  secondaryItem: string = 'Contacto';
+  item: string  = 'Contacto';
+  search: boolean  = false;
+  titulo: string = this.secondaryItem;
+
 
   defaultContact: any = {
     name: '',
