@@ -12,6 +12,8 @@ import localePy from '@angular/common/locales/es-MX';
 
 
 
+
+
 registerLocaleData(localePy, 'es');
 
 @NgModule({
@@ -23,6 +25,8 @@ registerLocaleData(localePy, 'es');
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+
   ],
 
   providers: [{provide: LOCALE_ID, useValue: 'es-Mx' } ],

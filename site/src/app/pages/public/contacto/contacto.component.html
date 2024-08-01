@@ -1,26 +1,31 @@
 
 
+<app-breadcrumbs [firstItem]="item" [search]="search"></app-breadcrumbs>
 
-<section class="-col-2  -err">
+<section class="-col-2 __contacto">
 
-  <div class="d-flex align-items-center justify-content-center px-3">
-    texto de invitación
-    <br>bienvenido
-    <br>deja tu mensaje
+  <div class="d-flex align-items-center justify-content-center px-2 pb-2">
+z
+    <div class="card d-flex align-items-center justify-content-center p-4" >
+      <h1 class="text-white">HAGAMOS REALIDAD TU PROYECTO</h1>
+        <p class="">Déjanos un mensaje y uno de nuestros profesionales se pondrá en contacto contigo.
+        </p>
+    </div>
+
   </div>
 
-  <div class=" d-flex align-items-center justify-content-center px-3">
+  <div class="d-flex align-items-center justify-content-center px-2 pb-2">
 
-    <div class="card p-3 -err" style="width: 70%;">
+    <div class="card">
 
       <div class="card-body" *ngIf="!sendCorrect">
         <form class=""
               [formGroup]="contactForm"
               (ngSubmit)="submit()">
 
-          <div class="mb-2 -err">
+          <div class="mb-2">
               <label class="form-label">
-                Nombre:
+                Nombre
               </label>
               <input type="text" class="form-control" placeholder="Por favor ingrese su nombre"
                      name="name"
@@ -58,9 +63,9 @@
             </ng-container>
           </div>
 
-          <div class="mb-2 -err">
+          <div class="mb-2">
             <label class="form-label">
-              Correo:
+              Correo
             </label>
             <input class="form-control" placeholder="Por favor ingrese su correo"
                    type="email"
@@ -106,9 +111,9 @@
             </ng-container>
           </div>
 
-          <div class="mb-2 -err">
+          <div class="mb-2">
             <label class="form-label">
-              Teléfono:
+              Teléfono
             </label>
             <input class="form-control" placeholder="Por favor ingrese su teléfono"
                    type="number"
@@ -148,9 +153,9 @@
             </ng-container>
           </div>
 
-          <div class="mb-2 -err">
+          <div class="mb-2">
             <label class="form-label">
-              Comentarios:
+              Comentarios
             </label>
             <textarea placeholder="Mensaje" class="form-control"
                       name="message"
@@ -160,6 +165,7 @@
                       'is-invalid': contactForm.controls['message'].invalid,
                       'is-valid': contactForm.controls['message'].valid
                    }"></textarea>
+
             <i class="fal fa-comments"></i>
             <ng-container
               [ngTemplateOutlet]="formError"
@@ -187,7 +193,7 @@
             </ng-container>
           </div>
 
-          <button type="submit" class="primary-btn"
+          <button type="submit" class="btn btn-primary position-absolute end-0 me-3"
                   [disabled]="contactForm.invalid">
             <ng-container *ngIf="isLoading">
                 <span class="indicator-progress" [style.display]="'block'">
@@ -222,7 +228,7 @@
         <p> Su mensaje ah sido enviado</p>
       </div>
       <div *ngIf="sendError">
-        <p> Se encontro un error al enviar el mensaje, intente mas tarde </p>
+        <p> Se encontró un error al enviar el mensaje, intente mas tarde </p>
       </div>
 
     </div>
