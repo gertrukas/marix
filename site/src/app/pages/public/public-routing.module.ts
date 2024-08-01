@@ -19,7 +19,7 @@ const routes: Routes = [
         loadChildren: () => import('./results/results.module').then(m => m.ResultsModule),
       },
       {
-        path: 'blog/:slug',
+        path: 'blog',
         loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
       },
       { path: 'aviso-de-privacidad',
@@ -34,7 +34,7 @@ const routes: Routes = [
         loadChildren: () => import('./products/products.module').then(m => m.ProductsModule),
       },
       {
-        path: 'producto/:slug',
+        path: 'producto',
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule),
       },
       {

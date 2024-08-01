@@ -16,7 +16,7 @@
         <p-table #dt [value]="products" [(selection)]="selectedProducts" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
                  [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" responsiveLayout="scroll"
                  [paginator]="true" currentPageReportTemplate="Mostrar {first} a {last} de {totalRecords} productos"
-                 [filterDelay]="0" [globalFilterFields]="['name', 'active', 'description', 'date', 'key', 'model', 'size', 'intro']">
+                 [filterDelay]="0" [globalFilterFields]="['name', 'active', ' tion', 'date', 'key', 'model', 'size', 'intro']">
             <ng-template pTemplate="caption">
                 <div class="bg-light- row flex align-items-center justify-content-end">
                     <div class="col">
@@ -42,7 +42,7 @@
                     </th>
                     <th pSortableColumn="key">
                         <div class="flex justify-content-between align-items-center">
-                            Codigo
+                            Código
                             <p-sortIcon field="key"></p-sortIcon>
                             <p-columnFilter type="text" field="key" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
@@ -56,7 +56,7 @@
                     </th>
                     <th pSortableColumn="date">
                         <div class="flex justify-content-between align-items-center">
-                            Fecha de creación
+                            Fecha
                             <p-sortIcon field="date"></p-sortIcon>
                             <p-columnFilter type="text" field="date" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
@@ -89,7 +89,7 @@
                         <div class="d-flex align-items-center">
                             <div class="symbol me-5">
                                 <img [src]="product._id | image: 'products' : product.image"
-                                     width="100px"
+                                     width="200px"
                                      class="cursor-pointer"
                                      [alt]="product.name"
                                      (click)="editProduct(product)"/>
@@ -110,7 +110,7 @@
                     </td>
                     <td (click)="editProduct(product)">
                         <span class="p-column-title">date</span>
-                        {{ product.date | date }}
+                        {{ product.date | date: 'dd/MMM/yyyy' }}
                     </td>
                     <td>
                         <span class="p-column-title">status</span>
@@ -171,7 +171,7 @@
 </div>
 
 <p-dialog [header]="create ? 'Crear Producto':'Editar Producto ' + product.name"
-          [(visible)]="productDialog" [modal]="true" [breakpoints]="{'960px': '75vw', '540px': '100vw'}" [style]="{width: '50vw'}"
+          [(visible)]="productDialog" [modal]="true" [breakpoints]="{'960px': '75vw', '540px': '100vw'}" [style]="{width: '85vw'}"
           [draggable]="false" [resizable]="false">
     <ng-template pTemplate="body">
         <form (ngSubmit)="saveProduct(formCreate)"  #formCreate="ngForm">
@@ -184,13 +184,14 @@
                 </div>
             </div>
             <div class="form-floating mt-3">
-                <textarea class="form-control" placeholder="Descripción" [(ngModel)]="product.description" name="description"  id="description" style="height: 100px"></textarea>
-                <label for="description">Descripción</label>
-            </div>
-            <div class="form-floating mt-3">
                 <textarea class="form-control" placeholder="Descripción breve" [(ngModel)]="product.intro" name="intro"  id="intro" style="height: 100px"></textarea>
                 <label for="intro">Introduccion</label>
             </div>
+            <div class="form-floating mt-3">
+                <textarea class="form-control" placeholder="Descripción" [(ngModel)]="product.description" name="description"  id="description" style="height: 100px"></textarea>
+                <label for="description">Descripción</label>
+            </div>
+
             <div class="p-fluid grid row mt-5 pt-3">
                 <span class="p-float-label">
                   <p-multiSelect inputId="categories" id="categories" name="categories" [options]="categories" [(ngModel)]="product.categories" optionLabel="name"></p-multiSelect>
@@ -225,6 +226,7 @@
                 <input class="form-check-input" type="checkbox" name="confirm" [(ngModel)]="product.new" value="false"/>
                 <label class="form-check-label fw-bold ps-2 fs-6">Nuevo</label>
             </div>
+
             <div class="field col-12 mt-5 pt-3">
                 <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
                 <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !product.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">

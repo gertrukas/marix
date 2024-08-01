@@ -6,8 +6,7 @@
     <p>{{ product.date }}</p>
     <p>{{ product.model }}</p>
     <p>{{ product.key }}</p>
-<!--    <a [routerLink]="['/producto']" [queryParams]="{ slug: product.slug }" class="-boton-azul btn btn-primary">ver mas</a>-->
-    <a [routerLink]="['/producto', product.slug]" class="-boton-azul btn btn-primary">ver mas</a>
+    <a [routerLink]="['/producto']" [queryParams]="{ slug: product.slug }" class="-boton-azul btn btn-primary">ver mas</a>
     <div class="row">
       <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let category of product.categories">
         <p>{{ category.name }}</p>
