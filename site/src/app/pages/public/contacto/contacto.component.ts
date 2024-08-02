@@ -4,6 +4,7 @@ import {BehaviorSubject, first, Observable, Subscription} from "rxjs";
 import { GeneralService } from "../../../services/general.service";
 
 
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
