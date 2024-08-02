@@ -5,6 +5,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { SEOService } from 'src/app/services/seo.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
