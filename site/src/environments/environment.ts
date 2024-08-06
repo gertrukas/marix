@@ -10,6 +10,9 @@ export const environment = {
   backUrl: 'http://backend.xsbeta.com',
   adminUrl: 'http://localhost:4200',
   pageUrl: 'http://localhost:4200',
+
+  proyecto: 'Lounge & Food MPM',
+  proyecto_url: 'loungeandfood.mpm.com'
 };
 
 /*

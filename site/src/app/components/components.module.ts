@@ -16,8 +16,6 @@ import { AlianzasComponent } from './shared/alianzas/alianzas.component';
 import { LasCertificacionesComponent } from './shared/las-certificaciones/las-certificaciones.component';
 
 
-
-
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
@@ -28,6 +26,7 @@ import { LasCertificacionesComponent } from './shared/las-certificaciones/las-ce
     AlianzasComponent,
     LasCertificacionesComponent,
 
+
   ],
   exports: [
     BreadcrumbsComponent,
@@ -37,6 +36,7 @@ import { LasCertificacionesComponent } from './shared/las-certificaciones/las-ce
     ServiciosBeneficiosComponent,
     AlianzasComponent,
     LasCertificacionesComponent,
+
   ],
     imports: [
         CommonModule,

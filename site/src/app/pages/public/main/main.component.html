@@ -28,21 +28,96 @@
         <div class=" d-flex align-items-center justify-content-center px-3">
 
           <div class="">
-              <h1 class="-titulo">MPM Servicios</h1>
+            <h1 class="-titulo">MPM Servicios</h1>
               <h1 class="-titulo-gris">Servicios profesionales</h1>
               <br>
             <p>Desde 1997 contribuimos al bienestar y compromiso de las personas, facilitando la jornada laboral, mejorando la calidad de vida,  productividad y resultados en las organizaciones.</p>
 
                 <p>Cobertura a nivel nacional gestionando estrategias  desde la oficina central ubicada en León, Gto.</p>
               <br>
-
-
           </div>
 
         </div>
 
-
     </section>
+
+
+  <section class="__servicios -err">
+    <div class="--titulo">
+      <h1 class="-titulo-seccion">Servicios</h1>
+    </div>
+
+    <div class="-servicios">
+
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>Comedor empresarial</h2>
+            <img src="/assets/images/servicios/comedores-industriales.jpg" class="img-fluid pb-2" alt="ejemplo">
+            <p>Creamos ambiente de trabajo positivo, transformando espacios. Fomentamos salud y bienestar a las personas.</p>
+            <a class="" [routerLink]="['/servicios/comedor-empresarial']" role="button">Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>Eventos especiales</h2>
+            <img src="/assets/images/servicios/eventos-especiales.webp" class="img-fluid  pb-2" alt="ejemplo">
+            <p>Estamos contigo en cada momento.
+              <br>¡Nosotros nos hacemos cargo de todos tus eventos!
+            </p>
+            <a class="" [routerLink]="['/servicios/eventos-especiales']" role="button">Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2 class="">Cafeterias</h2>
+            <img src="/assets/images/servicios/cafeterias.jpg" class="img-fluid  pb-2" alt="ejemplo">
+
+            <p>Contribuimos al bienestar de los colaboradores dentro de su espacio laboral, creando un ambiente agradable.</p>
+
+            <a class="" [routerLink]="['/servicios/cafeterias']" role="button">Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2 class="">Catering</h2>
+            <img src="/assets/images/servicios/catering.webp" class="img-fluid  pb-2" alt="ejemplo">
+
+            <p>No tienes instalaciones
+              ¡Nosotros te llevamos!
+              Contamos con estructura, instalaciones y  unidades equipadas idóneas para la gestión de servicio de alimentación </p>
+
+            <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2 class="">Desarrollo de proyectos</h2>
+            <img src="/assets/images/servicios/desarrollo-de-proyectos.jpg" class="img-fluid  pb-2" alt="ejemplo">
+
+            <p>Soluciones integrales que se adaptan a concepto, posibilidad y alcance.</p>
+
+            <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
 
   <section>
     <div class="--titulo">
@@ -122,7 +197,6 @@
               <div class="col-md-6">
                 <a [routerLink]="['/blog', blog.slug]">
                   <img [src]="blog._id | image: 'blogs' : blog.image"  [alt]="blog.name" class="img-fluid">
-
                 </a>
               </div>
 
@@ -136,7 +210,7 @@
 
                   <div class="text-end">
 
-                    <a [routerLink]="['/blog']" [queryParams]="{ slug: blog.slug }" class="btn btn-primary">ver mas</a>
+                    <a [routerLink]="['/blog', blog.slug]" class="btn btn-primary">ver mas</a>
                   </div>
 
                 </div>

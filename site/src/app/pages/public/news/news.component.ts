@@ -24,7 +24,7 @@ export class NewsComponent {
       post_type: '',
       active: true,
       delete: false,
-      date:  new Date()
+      date:  new Date(),
     };
 
     linkface: any = this.sanitizer.bypassSecurityTrustResourceUrl('');
