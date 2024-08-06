@@ -11,6 +11,7 @@ import { GeneralService } from "../../../services/general.service";
   styleUrls: ['./contacto.component.sass']
 })
 export class ContactoComponent implements OnInit, OnDestroy{
+
   secondaryItem: string = 'Contacto';
   item: string  = 'Contacto';
   search: boolean  = false;
@@ -18,7 +19,7 @@ export class ContactoComponent implements OnInit, OnDestroy{
 
 
   defaultContact: any = {
-    name: '',
+    name: ' ',
     email: '',
     phone: '',
     message: '',
@@ -44,7 +45,8 @@ export class ContactoComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void{
-      this.initForm();
+    this.initForm();
+    this.contactForm.controls['name'].setValue(undefined)
 
   }
 
@@ -56,7 +58,7 @@ export class ContactoComponent implements OnInit, OnDestroy{
   initForm() {
     this.contactForm = this.fb.group({
       name: [
-        this.defaultContact.name,
+        this.defaultContact.email,
         Validators.compose([
           Validators.required,
           Validators.minLength(3),

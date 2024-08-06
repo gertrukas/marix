@@ -20,7 +20,7 @@ z
     <div class="card">
 
       <div class="card-body" *ngIf="!sendCorrect">
-        <form class=""
+        <form class="form"
               [formGroup]="contactForm"
               (ngSubmit)="submit()">
 
@@ -28,14 +28,16 @@ z
               <label class="form-label">
                 Nombre
               </label>
-              <input type="text" class="form-control" placeholder="Por favor ingrese su nombre"
+              <input type="text" placeholder="Por favor ingrese su nombre"
                      name="name"
                      formControlName="name"
                      autocomplete="off"
+                     class="form-control"
                      [ngClass]="{
-                      'is-invalid': contactForm.controls['name'].invalid,
+                     'is-invalid': contactForm.controls['name'].invalid && contactForm.controls['name'].value?.length > 0,
                       'is-valid': contactForm.controls['name'].valid
-                   }">
+                     }"
+              >
             <i class="fal fa-user"></i>
             <ng-container
               [ngTemplateOutlet]="formError"
@@ -49,7 +51,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'minLength',
+                validation: 'minlength',
                 message: 'El nombre debe tener como mínimo 3',
                 control: contactForm.controls['name']
               }">
@@ -57,7 +59,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'maxLength',
+                validation: 'maxlength',
                 message: 'El nombre debe tener como máximo 20',
                 control: contactForm.controls['name']
               }">
@@ -74,7 +76,7 @@ z
                    formControlName="email"
                    autocomplete="off"
                    [ngClass]="{
-                      'is-invalid': contactForm.controls['email'].invalid,
+                      'is-invalid': contactForm.controls['email'].invalid && contactForm.controls['email'].value?.length > 0,
                       'is-valid': contactForm.controls['email'].valid
                    }">
             <i class="fal fa-envelope"></i>
@@ -82,7 +84,7 @@ z
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
                 validation: 'required',
-                message: 'pag El correo es obligatorio',
+                message: 'El correo es obligatorio',
                 control: contactForm.controls['email']
               }">
             </ng-container>
@@ -90,23 +92,23 @@ z
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
                 validation: 'email',
-                message: ' El correo no tiene el formato correcto',
+                message: 'El correo no tiene el formato correcto',
                 control: contactForm.controls['email']
               }">
             </ng-container>
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'minLength',
-                message: 'page El correo debe contener mínimo 320 caracteres',
+                validation: 'minlength',
+                message: 'El correo debe contener mínimo 10 caracteres',
                 control: contactForm.controls['email']
               }">
             </ng-container>
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'maxLength',
-                message: 'page El correo debe contener mínimo 10 caracteres',
+                validation: 'maxlength',
+                message: 'El correo debe contener mínimo 320 caracteres',
                 control: contactForm.controls['email']
               }">
             </ng-container>
@@ -123,7 +125,7 @@ z
                    formControlName="phone"
                    autocomplete="off"
                    [ngClass]="{
-                      'is-invalid': contactForm.controls['phone'].invalid,
+                      'is-invalid': contactForm.controls['phone'].invalid && contactForm.controls['phone'].value?.length > 0,
                       'is-valid': contactForm.controls['phone'].valid
                    }">
             <i class="fal fa-user"></i>
@@ -139,7 +141,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'minLength',
+                validation: 'minlength',
                 message: 'El teléfono debe tener como mínimo 10',
                 control: contactForm.controls['phone']
               }">
@@ -147,7 +149,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'maxLength',
+                validation: 'maxlength',
                 message: 'El teléfono debe tener como máximo 10',
                 control: contactForm.controls['phone']
               }">
@@ -163,7 +165,7 @@ z
                       formControlName="message"
                       autocomplete="off"
                       [ngClass]="{
-                      'is-invalid': contactForm.controls['message'].invalid,
+                      'is-invalid': contactForm.controls['message'].invalid && contactForm.controls['message'].value?.length > 0,
                       'is-valid': contactForm.controls['message'].valid
                    }"></textarea>
 
@@ -179,7 +181,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'minLength',
+                validation: 'minlength',
                 message: 'El mensaje debe contener mínimo 20 caracteres',
                 control: contactForm.controls['message']
               }">
@@ -187,7 +189,7 @@ z
             <ng-container
               [ngTemplateOutlet]="formError"
               [ngTemplateOutletContext]="{
-                validation: 'maxLength',
+                validation: 'maxlength',
                 message: 'El mensaje debe contener máximo 500 caracteres',
                 control: contactForm.controls['message']
               }">
@@ -208,22 +210,19 @@ z
               <span class="indicator-label">Enviar</span>
             </ng-container>
           </button>
-        </form>
-        <ng-template
-          #formError
-          let-control="control"
-          let-message="message"
-          let-validation="validation">
-          <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
-            <div class="fv-plugins-message-container">
+          <ng-template #formError
+                       let-control="control"
+                       let-message="message"
+                       let-validation="validation">
+            <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+              <div class="fv-plugins-message-container">
               <span role="alert">
                 {{ message }}
               </span>
-            </div>
-          </ng-container>
-        </ng-template>
-
-
+              </div>
+            </ng-container>
+          </ng-template>
+        </form>
       </div>
       <div *ngIf="sendCorrect">
         <p> Su mensaje ah sido enviado</p>

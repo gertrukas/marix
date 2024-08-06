@@ -39,8 +39,8 @@ export class NewsComponent {
       private titleService: Title,
       private metaService: Meta,
   ) {
-      this.router.queryParamMap.subscribe( params => {
-      this.slug = params.get('slug')?.toString();
+      this.router.params.subscribe( params => {
+      this.slug = params['slug']?.toString();
       this.getData(this.slug);
       //@ts-ignore
       // this.blog = JSON.parse(blog);

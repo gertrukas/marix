@@ -46,8 +46,8 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
-      this.slug = params.get('slug')?.toString();
+    this.route.params.subscribe(params => {
+      this.slug = params['slug']?.toString();
       this.getData(this.slug);
     });
   }
