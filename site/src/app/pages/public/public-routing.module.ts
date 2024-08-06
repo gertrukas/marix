@@ -73,21 +73,14 @@ const routes: Routes = [
         path: 'contacto',
         loadChildren: () => import('./contacto/contacto.module').then(m => m.ContactoModule)
       },
+      {
+        path: 'comunicados',
+        loadChildren: () => import('./comunicados/comunicados.module').then(m => m.ComunicadosModule)
+      },
 
 
     ]
   },
-
-
-
-
-
-
-
-
-
-
-
 
 
 ];

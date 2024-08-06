@@ -1,4 +1,4 @@
-
+@import "../../../../assets/sass/variables"
 
 .--hero
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
@@ -17,7 +17,79 @@
 
   color: white
 
-  --caption
+.--caption
     height: 100%
 
 
+
+.__servicios .-servicios
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-wrap: wrap
+  padding: 0px 0
+
+.__servicios .-servicios .card
+  position: relative
+  width: 25%
+  height: 480px
+  box-shadow: inset 5px 5px 5px rgba(0,0,0,0.05), inset -5px -5px 5px rgba(255, 255, 255,0.5),  5px 5px 5px rgba(0, 0, 0,0.05),  -5px -5px 5px rgba(255, 255, 255,0.5)
+  border-radius: 15px
+  margin: 30px
+
+.__servicios .-servicios .card .box
+  position: absolute
+  top: 20px
+  left: 20px
+  right: 20px
+  bottom: 20px
+  background: #ebf5fc
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1)
+  border-radius: 15px
+  display: flex
+
+  transition: 0.5s
+
+.__servicios .-servicios .card:hover .box
+  transform: translateY(-40px)
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2)
+  background: linear-gradient(45deg,#b95ce4, #4f29cc)
+
+
+
+.__servicios .-servicios .card .box .content
+    padding: 20px
+    text-align: center
+
+.__servicios .-servicios .card .box .content h2
+  border: 1px solid green
+  font-size: 2em
+  color: $-color10
+  transition: 0.5s
+  pointer-events: none
+
+.__servicios .-servicios .card:hover .box .content h2
+  color: white
+  font-size: 2em
+
+.__servicios .-servicios .card:hover .box .content p
+
+  color: white
+  z-index: 1
+  transition: 0.5s
+
+.__servicios .-servicios .card .box .content a
+  position: relative
+  display: inline-block
+  padding: 8px 40px
+  background: $-color30
+  margin-top: 0px
+  border-radius: 20px
+  color: white
+  text-decoration: none
+  font-weight: 400
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2)
+
+.__servicios .-servicios .card:hover .box .content a
+  background: #ff568f

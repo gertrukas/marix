@@ -1,16 +1,20 @@
 <app-breadcrumbs [firstItem]="blog.name"></app-breadcrumbs>
-<div class="p-2">
-    <h1>{{ blog.name }}</h1>
-    <div [innerHtml]="blog.date | date: 'mediumDate'" class="-nombre" ></div>
-    <div class="-col-2 p-1" >
-      <div >
-        <img [src]="blog._id | image: 'blogs' : blog.image"  [alt]="blog.name"  class="img-fluid" width="100%"  *ngIf="view">
+<section class="p-2">
+  <div class="--titulo">
+    <h1 class="-titulo-seccion">{{ blog.name }}</h1>
+  </div>
+
+      <div class="text-center p-2">
+        <img [src]="blog._id | image: 'blogs' : blog.image"  [alt]="blog.name"  class="img-fluid " width="50%" height="auto"  *ngIf="view">
       </div>
 
-      <div>
-          <div [innerHTML]="blog.description" class="-intro" ></div>
+      <div class="row p-4">
 
-          <hr>
+        <div [innerHtml]="blog.date | date: 'mediumDate'" class="-nombre" ></div>
+
+        <div [innerHTML]="blog.description" class="-intro" ></div>
+
+        <hr>
 
           <iframe [src]="linkface"
                   width="450"
@@ -30,5 +34,5 @@
 
       </div>
 
-    </div>
-  </div>
+
+</section>

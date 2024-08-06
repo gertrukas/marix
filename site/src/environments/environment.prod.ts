@@ -6,4 +6,7 @@ export const environment = {
   backUrl: 'https://backend.xsbeta.com',
   adminUrl: 'https://admin.xsbeta.com/',
   pageUrl: 'https://xsbeta.com/',
+
+  proyecto: 'Lounge & Food MPM',
+  proyecto_url: 'loungeandfood.mpm.com'
 };
