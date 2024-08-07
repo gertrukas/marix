@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class=" d-flex align-items-center justify-content-center px-3">
+        <div class="d-flex align-items-center justify-content-center px-3">
 
           <div class="">
             <h1 class="-titulo">MPM Servicios</h1>
@@ -42,12 +42,12 @@
     </section>
 
 
-  <section class="__servicios -err">
+  <section>
     <div class="--titulo">
       <h1 class="-titulo-seccion">Servicios</h1>
     </div>
 
-    <div class="-servicios">
+    <div class="-servicios -col-3">
 
       <div class="card">
         <div class="box">
@@ -55,7 +55,9 @@
             <h2>Comedor empresarial</h2>
             <img src="/assets/images/servicios/comedores-industriales.jpg" class="img-fluid pb-2" alt="ejemplo">
             <p>Creamos ambiente de trabajo positivo, transformando espacios. Fomentamos salud y bienestar a las personas.</p>
-            <a class="" [routerLink]="['/servicios/comedor-empresarial']" role="button">Leer mas</a>
+            <div class="-foot">
+              <a class="" [routerLink]="['/servicios/comedor-empresarial']" role="button">Leer mas</a>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +70,9 @@
             <p>Estamos contigo en cada momento.
               <br>¡Nosotros nos hacemos cargo de todos tus eventos!
             </p>
-            <a class="" [routerLink]="['/servicios/eventos-especiales']" role="button">Leer mas</a>
+            <div class="-foot">
+              <a class="" [routerLink]="['/servicios/eventos-especiales']" role="button">Leer mas</a>
+            </div>
           </div>
         </div>
       </div>
@@ -80,8 +84,9 @@
             <img src="/assets/images/servicios/cafeterias.jpg" class="img-fluid  pb-2" alt="ejemplo">
 
             <p>Contribuimos al bienestar de los colaboradores dentro de su espacio laboral, creando un ambiente agradable.</p>
-
-            <a class="" [routerLink]="['/servicios/cafeterias']" role="button">Leer mas</a>
+            <div class="-foot">
+              <a class="" [routerLink]="['/servicios/cafeterias']" role="button">Leer mas</a>
+            </div>
           </div>
         </div>
       </div>
@@ -95,27 +100,34 @@
             <p>No tienes instalaciones
               ¡Nosotros te llevamos!
               Contamos con estructura, instalaciones y  unidades equipadas idóneas para la gestión de servicio de alimentación </p>
-
-            <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+            <div class="-foot">
+              <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+            </div>
           </div>
         </div>
       </div>
+
 
       <div class="card">
-        <div class="box">
+        <div class="box justify-content-center">
           <div class="content">
-            <h2 class="">Desarrollo de proyectos</h2>
-            <img src="/assets/images/servicios/desarrollo-de-proyectos.jpg" class="img-fluid  pb-2" alt="ejemplo">
 
-            <p>Soluciones integrales que se adaptan a concepto, posibilidad y alcance.</p>
+              <h2 class="">Desarrollo de proyectos</h2>
+              <img src="/assets/images/servicios/desarrollo-de-proyectos.jpg" class="img-fluid  pb-2" alt="ejemplo">
+              <p>Soluciones integrales que se adaptan a concepto, posibilidad y alcance.</p>
 
-            <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+            <div class="-foot">
+              <a class="" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+            </div>
           </div>
         </div>
       </div>
+
+
 
 
     </div>
+
   </section>
 
 
@@ -177,7 +189,9 @@
         <p>Soluciones integrales que se adaptan a concepto, posibilidad y alcance.
         </p>
         <br>
-        <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+
+          <a class="-btn-ver-mas float-end" [routerLink]="['/servicios/desarrollo-de-proyectos']" role="button">Leer mas</a>
+
       </div>
     </div>
   </section>

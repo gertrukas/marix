@@ -17,7 +17,7 @@ z
 
   <div class="d-flex align-items-center justify-content-center px-2 pb-2">
 
-    <div class="card">
+    <div class="card px-4">
 
       <div class="card-body" *ngIf="!sendCorrect">
         <form class="form"
@@ -195,8 +195,8 @@ z
               }">
             </ng-container>
           </div>
-
-          <button type="submit" class="btn btn-primary position-absolute end-0 me-3"
+          <br><br>
+          <button type="submit" class="btn btn-primary position-absolute end-0 "
                   [disabled]="contactForm.invalid">
             <ng-container *ngIf="isLoading">
                 <span class="indicator-progress" [style.display]="'block'">
