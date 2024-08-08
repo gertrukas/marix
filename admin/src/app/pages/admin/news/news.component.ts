@@ -204,6 +204,8 @@ export class NewsComponent implements OnInit {
         text: 'La noticia se creó con exíto.',
         timer: 2000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       this.isLoading$.next(false);
@@ -243,6 +245,8 @@ export class NewsComponent implements OnInit {
         text: 'La noticia se actualizo con exíto.',
         timer: 3000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       this.isLoading$.next(false);

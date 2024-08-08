@@ -95,7 +95,7 @@
                     </td>
                     <td (click)="editCategory(category)">
                         <span class="p-column-title">date_create</span>
-                        {{ category.date_create | date }}
+                        {{ category.date_create | date: 'dd/MMM/yyyy' }}
                     </td>
                     <td style="text-align: center" *ngIf="signedUser$ | async as _signedUser">
                         <!--                        <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>-->
@@ -159,7 +159,7 @@
             <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
             <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !category.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
             <img [src]="category._id | image: 'categories' : category.image" [alt]="category.image" width="150px" class="product-image cursor-pointer" *ngIf="category.image && !thumbnail" (click)="file.click()">
-            <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file>
+            <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file accept="image/*">
             <div class="p-fluid grid row">
                 <div class="field col-12 mt-5 pt-3">
                   <span class="p-float-label">

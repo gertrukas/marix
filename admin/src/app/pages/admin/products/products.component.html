@@ -243,13 +243,13 @@
             <div class="field col-12 mt-5 pt-3">
                 <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
                 <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !product.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
-                <img [src]="product._id | image: 'blogs' : product.image" [alt]="product.image" width="150px" class="product-image cursor-pointer" *ngIf="product.image && !thumbnail" (click)="file.click()">
+                <img [src]="product._id | image: 'products' : product.image" [alt]="product.image" width="150px" class="product-image cursor-pointer" *ngIf="product.image && !thumbnail" (click)="file.click()">
                 <p-button type="button" icon="pi pi-image"
                           (click)="file.click()"
                           label="Seleccionar Imagen"
                           styleClass="p-button-rounded p-button-success ms-5">
                 </p-button>
-                <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file>
+                <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file accept="image/*">
             </div>
             <div class="field col-12 mt-5 pt-3">
                 <div class="alert alert-primary mt-3" role="alert">

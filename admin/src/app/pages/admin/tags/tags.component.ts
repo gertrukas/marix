@@ -171,6 +171,8 @@ export class TagsComponent implements OnInit {
         text: 'La etiqueta se creó con exíto.',
         timer: 2000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
@@ -211,6 +213,8 @@ export class TagsComponent implements OnInit {
         text: 'La etiqueta se actualizo con exíto.',
         timer: 3000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
