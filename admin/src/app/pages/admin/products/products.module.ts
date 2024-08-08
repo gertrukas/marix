@@ -19,31 +19,33 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { PipesModule } from "../../../pipes/pipes.module";
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {MultiSelectModule} from "primeng/multiselect";
+import {EditorModule} from "primeng/editor";
 
 
 @NgModule({
   declarations: [
     ProductsComponent
   ],
-    imports: [
-        CommonModule,
-        ProductsRoutingModule,
-        InlineSVGModule,
-        TableModule,
-        DropdownModule,
-        SliderModule,
-        PaginatorModule,
-        ProgressBarModule,
-        ButtonModule,
-        InputTextModule,
-        ConfirmDialogModule,
-        InputTextareaModule,
-        DialogModule,
-        RippleModule,
-        SweetAlert2Module,
-        PipesModule,
-        NgxDropzoneModule,
-        MultiSelectModule
-    ]
+      imports: [
+            CommonModule,
+            ProductsRoutingModule,
+            InlineSVGModule,
+            TableModule,
+            DropdownModule,
+            SliderModule,
+            PaginatorModule,
+            ProgressBarModule,
+            ButtonModule,
+            InputTextModule,
+            ConfirmDialogModule,
+            InputTextareaModule,
+            DialogModule,
+            RippleModule,
+            SweetAlert2Module,
+            PipesModule,
+            NgxDropzoneModule,
+            MultiSelectModule,
+            EditorModule
+      ]
 })
 export class ProductsModule { }

@@ -9,8 +9,10 @@ z
     <div class="card d-flex align-items-center justify-content-center p-4" >
       <h1 class="text-white">HAGAMOS REALIDAD TU PROYECTO</h1>
       <br>
-        <p class="">Déjanos un mensaje y uno de nuestros profesionales se pondrá en contacto contigo.
-        </p>
+      <p class="">Si tienes alguna pregunta, comentario o sugerencia, no dudes en escribirnos. Tu opinión es muy importante para nosotros. Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+      <h2>¡Gracias por tu interés!</h2>
+
     </div>
 
   </div>
@@ -20,6 +22,7 @@ z
     <div class="card px-4">
 
       <div class="card-body" *ngIf="!sendCorrect">
+
         <form class="form"
               [formGroup]="contactForm"
               (ngSubmit)="submit()">
@@ -224,14 +227,20 @@ z
           </ng-template>
         </form>
       </div>
-      <div *ngIf="sendCorrect">
-        <p> Su mensaje ah sido enviado</p>
+      <div class="d-flex align-items-center justify-content-center">
+          <div *ngIf="sendCorrect">
+            <p> Su mensaje ah sido enviado</p>
+          </div>
       </div>
-      <div *ngIf="sendError">
-        <p> Se encontró un error al enviar el mensaje, intente mas tarde </p>
-      </div>
+       <div class="d-flex align-items-center justify-content-center">
+        <div *ngIf="sendError">
+          <p> Se encontró un error al enviar el mensaje, intente mas tarde </p>
+        </div>
+        </div>
 
     </div>
+
+
 
   </div>
 

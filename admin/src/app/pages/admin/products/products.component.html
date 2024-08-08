@@ -83,6 +83,7 @@
                     </th>
                 </tr>
             </ng-template>
+
             <ng-template pTemplate="body" let-product let-ri="rowIndex">
                 <tr class="p-selectable-row" *ngIf="product.role != 'SUPER_ADMIN_ROLE'">
                     <td>
@@ -175,21 +176,33 @@
           [draggable]="false" [resizable]="false">
     <ng-template pTemplate="body">
         <form (ngSubmit)="saveProduct(formCreate)"  #formCreate="ngForm">
-            <div class="p-fluid grid row">
+
+              <div class="p-fluid grid row">
                 <div class="field col-12 mt-5 pt-3">
                   <span class="p-float-label">
                       <input type="text" id="name" name="name" pInputText [(ngModel)]="product.name" autocomplete="off" required>
                       <label for="name">Nombre</label>
                   </span>
                 </div>
-            </div>
+              </div>
+
+
             <div class="form-floating mt-3">
-                <textarea class="form-control" placeholder="Descripción breve" [(ngModel)]="product.intro" name="intro"  id="intro" style="height: 100px"></textarea>
-                <label for="intro">Introduccion</label>
+                  <label for="intro">Introducción</label>
+                  <br><br>
+                  <p-editor [(ngModel)]="product.intro" [style]="{'height':'100px'}" id="intro" name="intro"></p-editor>
+                <!--<textarea class="form-control" placeholder="Descripción breve" [(ngModel)]="product.intro" name="intro"  id="intro" style="height: 100px"></textarea>-->
+
             </div>
+
+
             <div class="form-floating mt-3">
-                <textarea class="form-control" placeholder="Descripción" [(ngModel)]="product.description" name="description"  id="description" style="height: 100px"></textarea>
-                <label for="description">Descripción</label>
+                  <label for="description">Descripción</label>
+                  <br><br>
+                      <p-editor [(ngModel)]="product.description" [style]="{'height':'320px'}" id="description" name="description"></p-editor>
+
+                <!--<textarea class="form-control" placeholder="Descripción" [(ngModel)]="product.description" name="description"  id="description" style="height: 100px"></textarea>-->
+
             </div>
 
             <div class="p-fluid grid row mt-5 pt-3">
