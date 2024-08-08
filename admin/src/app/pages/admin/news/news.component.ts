@@ -1,13 +1,14 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Blog } from "../../../interfaces/blog";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Title } from "@angular/platform-browser";
+import { BlogsService } from "../../../services/admin/blogs.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { NgForm } from "@angular/forms";
 import { AuthService, UserType } from "../../../modules/auth";
-import { BlogsService } from "../../../services/admin/blogs.service";
-import { Blog } from "../../../interfaces/blog";
-import { TranslationService } from "../../../modules/i18n";
 import { UploadsService } from "../../../services/admin/uploads.service";
+import { TranslationService } from "../../../modules/i18n";
+
 
 
 @Component({

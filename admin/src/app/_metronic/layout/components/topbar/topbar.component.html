@@ -1,4 +1,5 @@
 <!-- Search toolbar -->
+<!--
 <div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">
   <div
     class="btn btn-icon btn-active-light-primary position-relative"
@@ -16,6 +17,7 @@
   </div>
   <app-search-result-inner></app-search-result-inner>
 </div>
+-->
 
 <!-- Activities -->
 <!--<div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">-->
@@ -117,7 +119,8 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <img [src]="_user.id | image: 'users' : _user.image" [alt]="_user.name" />
+     {{ _user.name }}
+    <!--<img [src]="_user.id | image: 'users' : _user.image" [alt]="_user.name" />-->
   </div>
   <!-- end::Toggle  -->
   <app-user-inner></app-user-inner>
