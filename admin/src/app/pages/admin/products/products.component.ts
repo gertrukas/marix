@@ -224,7 +224,7 @@ export class ProductsComponent implements OnInit {
     this.pError=false;
   }
 
-  store(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
+  store(name: string, description: string, intro: string, model: string, key: string, blogs: string, size: string, categories: any) {
     this.isLoading$.next(true);
     let _categories: any[] = [];
     let params = new FormData();
@@ -234,7 +234,7 @@ export class ProductsComponent implements OnInit {
     params.append('description', description);
     params.append('key', key);
     params.append('model', model);
-    params.append('new', news);
+    params.append('new', blogs);
     params.append('size', size);
     // @ts-ignore
     categories.forEach(category => {
@@ -277,7 +277,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  update(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
+  update(name: string, description: string, intro: string, model: string, key: string, blogs: string, size: string, categories: any) {
     this.isLoading$.next(true);
     let _categories: any[] = [];
     let params = new FormData();
@@ -287,7 +287,7 @@ export class ProductsComponent implements OnInit {
     params.append('description', description);
     params.append('key', key);
     params.append('model', model);
-    params.append('new', news);
+    params.append('new', blogs);
     params.append('size', size);
     // @ts-ignore
     categories.forEach(category => {
