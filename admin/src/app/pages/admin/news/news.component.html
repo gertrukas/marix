@@ -59,7 +59,7 @@
 
 
                     <th  style="10rem" pSortableColumn="active">
-                        <div class="flex justify-content-between align-items-center -err">
+                        <div class="flex justify-content-between align-items-center">
                             Status
                             <p-sortIcon field="active"></p-sortIcon>
                             <p-columnFilter field="active" matchMode="equals" [showMenu]="false">
@@ -215,9 +215,9 @@
                 </div>
 
                 <div class="field col-12 mt-5 pt-3">
-                    <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
-                    <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !blog.image" width="150px" class="img-fluid cursor-pointer" (click)="file.click()">
-                    <img [src]="blog._id | image: 'blogs' : blog.image" [alt]="blog.image" width="150px" class="product-image cursor-pointer" *ngIf="blog.image && !thumbnail" (click)="file.click()">
+                    <img [src]="thumbnail" *ngIf="thumbnail" width="150px" class="img-fluid cursor-pointer pb-2" (click)="file.click()">
+                    <img src="assets/media/misc/image.png" *ngIf="!imageInit && !thumbnail && !blog.image" width="150px" class="img-fluid cursor-pointer  pb-2" (click)="file.click()">
+                    <img [src]="blog._id | image: 'blogs' : blog.image" [alt]="blog.image" width="150px" class="product-image cursor-pointer  pb-2" *ngIf="blog.image && !thumbnail" (click)="file.click()">
                     <p-button type="button" icon="pi pi-image"
                               (click)="file.click()"
                               label="Seleccionar Imagen"
