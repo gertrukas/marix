@@ -105,7 +105,7 @@
 
                     <td (click)="editBlog(blog)">
                         <span class="p-column-title">date</span>
-                        {{ blog.date | date: 'dd/MMM/yyy'}}
+                        {{ blog.date | date: 'dd/MMM/yyyy'}}
                     </td>
 
 
@@ -223,7 +223,7 @@
                               label="Seleccionar Imagen"
                               styleClass="p-button-rounded p-button-success ms-5">
                     </p-button>
-                    <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file>
+                    <input type="file" name="image" id="image" class="d-none" (change)="getImage($event)" #file accept="image/*">
                 </div>
                 <div class="field col-12 mt-5 pt-3">
                     <div class="alert alert-primary mt-3" role="alert">

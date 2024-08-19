@@ -66,7 +66,7 @@ export class ProductsComponent implements OnInit {
               private uploads: UploadsService,
               private service: ProductsService,
               private auth: AuthService) {
-    this.titleService.setTitle("Categorias");
+    this.titleService.setTitle("Productos");
     const loadingSubscr = this.isLoading$
         .asObservable()
         .subscribe((res) => (this.isLoading = res));
@@ -224,7 +224,7 @@ export class ProductsComponent implements OnInit {
     this.pError=false;
   }
 
-  store(name: string, description: string, intro: string, model: string, key: string, products: string, size: string, categories: any) {
+  store(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
     this.isLoading$.next(true);
     let _categories: any[] = [];
     let params = new FormData();
@@ -234,7 +234,7 @@ export class ProductsComponent implements OnInit {
     params.append('description', description);
     params.append('key', key);
     params.append('model', model);
-    params.append('new', products);
+    params.append('new', news);
     params.append('size', size);
     // @ts-ignore
     categories.forEach(category => {
@@ -258,6 +258,8 @@ export class ProductsComponent implements OnInit {
         text: 'El producto se creó con exíto.',
         timer: 2000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
@@ -277,7 +279,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  update(name: string, description: string, intro: string, model: string, key: string, products: string, size: string, categories: any) {
+  update(name: string, description: string, intro: string, model: string, key: string, news: string, size: string, categories: any) {
     this.isLoading$.next(true);
     let _categories: any[] = [];
     let params = new FormData();
@@ -287,7 +289,7 @@ export class ProductsComponent implements OnInit {
     params.append('description', description);
     params.append('key', key);
     params.append('model', model);
-    params.append('new', products);
+    params.append('new', news);
     params.append('size', size);
     // @ts-ignore
     categories.forEach(category => {
@@ -312,6 +314,8 @@ export class ProductsComponent implements OnInit {
         text: 'El producto se actualizo con exíto.',
         timer: 3000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
@@ -448,6 +452,8 @@ export class ProductsComponent implements OnInit {
   deleteImageGallery(img: string){
     this.isLoading$.next(true);
     this.uploads.deleteUploadGallery('products', this.product._id, img).subscribe(response => {
+      console.log(response);
+      this.product = response.model;
       this.getData();
       this.isLoading$.next(false);
       Swal.fire({

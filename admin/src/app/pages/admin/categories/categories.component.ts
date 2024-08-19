@@ -170,6 +170,8 @@ export class CategoriesComponent implements OnInit {
         text: 'La Categoria se creó con exíto.',
         timer: 2000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
@@ -210,6 +212,8 @@ export class CategoriesComponent implements OnInit {
         text: 'La Categoria se actualizo con exíto.',
         timer: 3000
       });
+      this.image = '';
+      this.thumbnail = '';
     }, error => {
       console.log(error);
       let msg;
