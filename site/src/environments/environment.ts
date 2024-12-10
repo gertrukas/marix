@@ -6,13 +6,16 @@ export const environment = {
   production: false,
   appVersion: 'v1.0.1',
   USERDATA_KEY: 'authexcess2024',
+
+
   apiUrl: 'https://backend.xsbeta.com/api',
   backUrl: 'https://backend.xsbeta.com',
   adminUrl: 'http://localhost:4200',
+
   pageUrl: 'http://localhost:4200',
 
-  proyecto: 'Lounge & Food MPM',
-  proyecto_url: 'loungeandfood.mpm.com'
+  proyecto: 'XSBETA',
+  proyecto_url: 'xsbeta.com'
 };
 
 /*
